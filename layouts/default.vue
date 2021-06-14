@@ -100,6 +100,12 @@ export default {
           icon: 'mdi-chart-bubble',
           title: 'Inspire',
           to: '/inspire'
+        },
+
+          {
+          icon: 'mdi-chart-bubble',
+          title: 'Createcase',
+          to: '/cases/createcase/add'
         }
       ],
       miniVariant: false,
