@@ -43,6 +43,20 @@
       <v-toolbar-title v-text="title" />
       <v-spacer />
      
+      <v-badge class="mr-3" icon="mdi-lock" color="blue" bottom overlap>
+        <template v-slot:badge>
+        </template>
+        <v-btn fab small class="primary" elevation="0" to="/me">
+          <v-icon medium color="white">mdi-account</v-icon></v-btn
+        >
+      </v-badge>
+      <v-badge class="mr-3" icon="mdi-lock" color="blue" bottom overlap>
+        <template v-slot:badge>
+        </template>
+        <v-btn fab small class="primary" elevation="0" to="/me">
+          <v-icon medium color="white">mdi-logout-variant</v-icon></v-btn
+        >
+      </v-badge>
     </v-app-bar>
     <v-main>
       <v-container>
