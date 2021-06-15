@@ -105,7 +105,7 @@ export default {
           {
           icon: 'mdi-chart-bubble',
           title: 'Createcase',
-          to: '/cases/createcase/add'
+          to: '/cases/add'
         }
       ],
       miniVariant: false,
