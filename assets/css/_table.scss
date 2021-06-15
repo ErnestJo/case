@@ -1,0 +1,56 @@
+table {
+  border-collapse: collapse;
+  empty-cells: show;
+}
+
+tr:nth-child(odd) {
+  background: #eaeaea;
+  &.strikeout {
+    color: red;
+    a {
+      color: red;
+    }
+  }
+}
+
+tr:nth-child(even) {
+  background: white;
+  &.strikeout {
+    color: red;
+    a {
+      color: red;
+    }
+  }
+}
+
+tr.strikeout {
+  td {
+    position: relative;
+    &:not(:last-child) {
+      &:before {
+        content: " ";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        border-bottom: 2px solid red;
+        width: 100%;
+      }
+      &:after {
+        content: "\00B7";
+        font-size: 1px;
+      }
+    }
+  }
+}
+
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: $color_primary;
+  font-weight: b;
+  color: white;
+  span {
+    color: white;
+  }
+}

@@ -1,0 +1,22 @@
+button {
+  &.button {
+    background-color: $button_color;
+    span {
+      color: white;
+      font-weight: bold;
+      font-size: large;
+    }
+    &.cancel {
+      background-color: $color_info !important;
+    }
+    &.upload {
+      background-color: $color_teal !important;
+    }
+    &.warning {
+      background-color: $color_warning !important;
+    }
+    i {
+      font-weight: bold;
+    }
+  }
+}
