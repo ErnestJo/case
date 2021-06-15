@@ -22,6 +22,7 @@
                       label="Username"
                       placeholder="e.g. demo"
                       v-model="payload.username"
+                      prepend-inner-icon="person"
                       :rules="[rules.required]"
                       value="user"
                       required
@@ -30,6 +31,8 @@
 
                     <v-text-field
                       v-model="payload.password"
+                       prepend-inner-icon="lock"
+                       :append-icon="show1 ? 'visibility' : 'visibility_off'"
                       :rules="[rules.required, rules.min]"
                       :type="show1 ? 'text' : 'password'"
                       name="input-10-1"

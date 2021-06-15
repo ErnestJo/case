@@ -45,11 +45,7 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    '@nuxtjs/axios',
-    '@nuxtjs/toast',
-    '@nuxtjs/sitemap',
     'nuxt-material-design-icons',
-    ['cookie-universal-nuxt', { parseJSON: false }],
   ],
 
   toast: {
@@ -70,6 +66,4 @@ export default {
   build: {
   },
 
-   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-   axios: {},
 }
