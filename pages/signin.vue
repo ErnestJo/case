@@ -5,13 +5,6 @@
         <v-card class="elevation-12">
           <v-toolbar prominent :src="image" flat>
             <v-toolbar-title color="white" dense>
-              <img
-                height="100px"
-                width="100"
-                class="mt-6"
-               
-                alt=""
-              />
             </v-toolbar-title>
             <v-spacer></v-spacer>
           </v-toolbar>
@@ -38,8 +31,8 @@
 
                     <v-text-field
                       v-model="payload.password"
-                      prepend-inner-icon="lock"
-                      :append-icon="show1 ? 'visibility' : 'visibility_off'"
+                       prepend-inner-icon="lock"
+                       :append-icon="show1 ? 'visibility' : 'visibility_off'"
                       :rules="[rules.required, rules.min]"
                       :type="show1 ? 'text' : 'password'"
                       name="input-10-1"
@@ -90,7 +83,7 @@ export default {
        password: "password",
        username: "demo",
     },
-    image:"https://images.squarespace-cdn.com/content/v1/5608c2dae4b0ffbc0ff092a2/1462484735802-94M1A977HJJEL2THCD2Q/ke17ZwdGBToddI8pDm48kLl6r9ydDU0pEbLAVM93WoUUqsxRUqqbr1mOJYKfIPR7IxQp-SzSi0mUVxNxPLQ2a8ST-OHudl8xFkQoit3yJpm7Mythp_T-mtop-vrsUOmeInPi9iDjx9w8K4ZfjXt2dtBAdYz4rrMKLrjAsWFNRtjSprFKWBuEhUbdsZxltHXcCjLISwBs8eEdxAxTptZAUg/Medical-physician-doctor-hands.png?format=2500w",
+    image:"https://tzhc.uk/wp-content/uploads/2020/06/police_logo-1.png",
     rules: {
       required: value => !!value || "Required.",
       min: v => v.length >= 8 || "Min 8 characters",
@@ -102,17 +95,17 @@ export default {
   },
   methods: {
     login() {
-    this.$store.dispatch("_authenticate_then_login",  this.payload)
+    // this.$store.dispatch("_authenticate_then_login",  this.payload)
     },
     nativateToHere(id) {
-      this.$router.push('/' + id);
+    //   this.$router.push('/' + id);
     },
   },
  beforeMount() {
-    console.log(this.$store.getters.isLoggedIn);
-    if (this.$store.getters.isLoggedIn) {
-      this.$router.push("/");
-    }
+//     console.log(this.$store.getters.isLoggedIn);
+//     if (this.$store.getters.isLoggedIn) {
+//       this.$router.push("/");
+//     }
   }
-};
+}
 </script>
