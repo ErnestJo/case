@@ -218,8 +218,8 @@ export default {
     close() {},
     save() {
       this.editedItem.gender = this.editedItem.gender.name;
-       this.editedItem.immeadiateActioin = this.editedItem.immeadiateActioin;
-        this.editedItem.occupation = this.editedItem.occupation;
+      this.editedItem.immeadiateActioin = this.editedItem.immeadiateActioin;
+      this.editedItem.occupation = this.editedItem.occupation;
       console.log(this.editedItem);
       var state = this.$refs.form.validate();
       this.$refs.form.validate();
