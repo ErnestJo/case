@@ -403,6 +403,178 @@ export default {
     ]
   }),
 
+  mounted() {
+    // this.$refs.calendar.checkChange();
+    // this.$store.dispatch("get_calendar_events");
+  },
+
+methods: {
+    // save_event: function() {
+    //   this.event.startDate = this.dates[0];
+    //   this.event.endDate = this.dates[1];
+    //   if (this.$refs.form.validate()) {
+    //     this.$store.dispatch("create_calendar_event", this.event).then(() => {
+    //       setTimeout(
+    //         () => this.$store.dispatch("get_calendar_events"),
+    //         this.delay_seconds
+    //       );
+    //       setTimeout(() => (this.focus = this.focus + " "), this.delay_seconds);
+    //     });
+    //   }
+    //   this.$refs.form.reset();
+    //   this.dialog = false;
+    // },
+    viewDay({ date }) {
+      this.focus = date;
+      this.type = "day";
+    },
+    getEventColor(event) {
+      return event.color;
+    },
+    setToday() {
+      this.focus = "";
+    },
+    prev() {
+      this.$refs.calendar.prev();
+    },
+    next() {
+      this.$refs.calendar.next();
+    },
+    showEvent({ nativeEvent, event }) {
+      const open = () => {
+        this.selectedEvent = event;
+        this.selectedElement = nativeEvent.target;
+        this.selectedEvent.details = event.description;
+        setTimeout(() => {
+          this.selectedOpen = true;
+        }, 10);
+      };
+
+      if (this.selectedOpen) {
+        this.selectedOpen = false;
+        setTimeout(open, 10);
+      } else {
+        open();
+      }
+
+      nativeEvent.stopPropagation();
+    },
+    updateRange({ start, end }) {
+      const events = [];
+
+      const min = new Date(`${start.date}T00:00:00`);
+      const max = new Date(`${end.date}T23:59:59`);
+      const days = (max.getTime() - min.getTime()) / 86400000;
+      const eventCount = this.rnd(days, days + 20);
+
+      for (let i = 0; i < eventCount; i++) {
+        const allDay = this.rnd(0, 3) === 0;
+        const firstTimestamp = this.rnd(min.getTime(), max.getTime());
+        const first = new Date(firstTimestamp - (firstTimestamp % 900000));
+        const secondTimestamp = this.rnd(2, allDay ? 288 : 8) * 900000;
+        const second = new Date(first.getTime() + secondTimestamp);
+
+        events.push({
+          name: this.names[this.rnd(0, this.names.length - 1)],
+          start: first,
+          end: second,
+          color: this.colors[this.rnd(0, this.colors.length - 1)],
+          timed: !allDay
+        });
+      }
+
+      this.events = this.fevents;
+    },
+    rnd(a, b) {
+      return Math.floor((b - a + 1) * Math.random()) + a;
+    },
+    delete_calendar_event(val) {
+      this.$store.dispatch("delete_calendar_event", val).then(() => {
+        setTimeout(
+          () => this.$store.dispatch("get_calendar_events"),
+          this.delay_seconds
+        );
+        setTimeout(() => {
+          this.selectedOpen = false;
+        }, 10);
+      });
+    },
+    initiate_update(e) {
+      var startDate =
+        e.start.getFullYear() +
+        "-" +
+        e.start.getMonth() +
+        "-" +
+        e.start.getDay();
+
+      var endDate =
+        e.end.getFullYear() + "-" + e.end.getMonth() + "-" + e.end.getDay();
+      this.dates[0] = startDate;
+      this.dates[1] = endDate;
+
+      this.event = {
+        name: e.name,
+        startDate: this.dates[0],
+        startTime: this.update_time_format(e.start),
+        endDate: this.dates[1],
+        endTime: this.update_time_format(e.end),
+        timed: e.timed,
+        description: e.eventSummary.description
+      };
+      this.updateId = e.eventSummary.id;
+      this.dialog = true;
+      this.edit = true;
+    },
+    update_time_format(time) {
+      return time
+        .toLocaleTimeString()
+        .slice(0, -3)
+        .split(":")[0] < 10
+        ? "0" + time.toLocaleTimeString().slice(0, -3)
+        : time.toLocaleTimeString().slice(0, -3);
+    },
+
+    update_calendar_event() {
+      this.event.description = this.event.description;
+      this.event.startDate = this.dates[0];
+      this.event.endDate = this.dates[1];
+      var payload = {
+        id: this.updateId,
+        data: this.event
+      };
+      this.$store.dispatch("update_calendar_event", payload).then(() => {
+        setTimeout(
+          () => this.$store.dispatch("get_calendar_events"),
+          this.delay_seconds
+        );
+      });
+    }
+  },
+
+computed: {
+//     ...mapGetters({
+//       eventsa: "events"
+//     }),
+//     fevents() {
+//       const events = [];
+//       this.eventsa.forEach(e => {
+//         var summary = {
+//           id: e.id,
+//           editable: e.ownedByMe,
+//           description: e.description
+//         };
+//         events.push({
+//           name: e.name,
+//           start: new Date(e.start),
+//           end: new Date(e.end),
+//           color: e.color,
+//           timed: e.timed,
+//           eventSummary: summary
+//         });
+//       });
+//       return events;
+//     }
+   }
 }
 </script>
 
