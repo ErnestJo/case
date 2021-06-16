@@ -64,7 +64,7 @@
     </v-row>
   </v-container>
 </template>
-
+:append-icon="show1 ? 'visibility' : 'visibility_off'"
 <script lang="js">
 export default {
   meta: {
