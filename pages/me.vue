@@ -136,7 +136,6 @@
                 >
 
                 <v-btn
-                  v-if="user != null"
                   v-bind="attrs"
                   v-on="on"
                   class="button"
@@ -231,17 +230,12 @@
             </v-dialog>
           </v-toolbar>
 
-            <v-card-text v-if="user != null">
+            <v-card-text >
           <v-container>
             <v-list three-line flat width="100%" class="default">
               <v-list-item>
                 <v-list-item-avatar size="120">
-                  <v-img
-                    :src="filebaseUri + entityThumbNail"
-                    :alt="user.username"
-                    lazy-src="https://aosa.org/wp-content/uploads/2019/04/image-placeholder-350x350.png"
-                  >
-                  </v-img>
+                  <!--  -->
                 </v-list-item-avatar>
 
                 <v-list-item-content>
@@ -260,7 +254,7 @@
             </v-list>
           </v-container>
         </v-card-text>
-        <v-card-text v-else>
+        <v-card-text>
           <v-progress-circular
             :width="2"
             color="primary"
