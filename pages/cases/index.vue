@@ -7,7 +7,7 @@
 
         <v-card class="mx-auto defaulf">
             <case-list
-            :datalist="datalist"
+            :datalist="cases"
             :pagetitle="all_pagetitle"
              >    
             </case-list>
@@ -30,16 +30,21 @@ export default {
         search: "",
         all_pagetitle: "All Cases"
     }),
-
+ created(){
+    this.$store.dispatch("retrieve_case");
+  },
     computed: {
         formTitle() {
       return this.editedIndex === -1 ? "New Item" : "Edit Item"; 
-    },
-    datalist: {
-      get() {
-        // get datalist of cases
-      }
+        },
+    cases (){
+return this.$store.getters.listcases;
     }
+    
+    
+    
+    
+  
  },
 
   beforeMount() {
