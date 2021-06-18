@@ -8,7 +8,6 @@
       :items="datalist"
       :search="search"
       :options="body.options"
-      sort-by="isActive"
       :sort-desc="sortDesc"
       mobile-breakpoint="100"
       @click:row="handleClick"
@@ -29,9 +28,9 @@
 
           <v-spacer></v-spacer>
           <div >
-             <v-btn medium  class="button" to="/cases/add"
+             <v-btn medium  class="button" to="/accusers/add"
               ><v-icon>mdi-plus</v-icon
-              > Add New Case</v-btn>
+              > Add Suspect </v-btn>
           </div>
         </v-toolbar>
         </template>
@@ -86,11 +85,11 @@ export default {
         search: "",
         sortDesc: false,  
          headers: [
-      { text: "Case Number", value: "caseno" },
-      { text: "Status", value: "status", sortable: true },
-      { text: "Assigned to", value: "assignedTo" },
-      { text: "Created On", value: "createdDate" },
-      { text: "Created By", value: "createdBy" },
+      { text: "Accuser Name", value: "name" , sortable: true},
+      { text: "Gender", value: "gender" },
+      { text: "Phone", value: "phone" },
+      { text: "Age", value: "age" },
+      { text: "Case Accused To", value: "" },
     ],
     desserts: [],
     editedIndex: -1,
