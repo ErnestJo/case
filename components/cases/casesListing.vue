@@ -12,7 +12,7 @@
       :sort-desc="sortDesc"
       mobile-breakpoint="100"
       @click:row="handleClick"
-      :items-per-page="itemsperpage"
+      
       @update:page="updatePagination"
         >
         <template v-slot:top>
@@ -86,11 +86,11 @@ export default {
         search: "",
         sortDesc: false,  
          headers: [
-      { text: "Case Number", value: "caseno" },
+      { text: "Case Number", value: "caseNumber" },
       { text: "Status", value: "status", sortable: true },
-      { text: "Assigned to", value: "assignedTo" },
-      { text: "Created On", value: "createdDate" },
-      { text: "Created By", value: "createdBy" },
+      { text: "Assigned to", value: "" },
+      { text: "Created On", value: "createdAt" },
+      { text: "Created By", value: "" },
     ],
     desserts: [],
     editedIndex: -1,
