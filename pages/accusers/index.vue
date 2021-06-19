@@ -32,15 +32,15 @@ export default {
     }),
 
      created(){
-    // this.$store.dispatch("retrieve_case");
+    this.$store.dispatch("retrieveaccuser");
   },
 
       computed: {
         formTitle() {
       return this.editedIndex === -1 ? "New Item" : "Edit Item"; 
         },
-    cases (){
-    return this.$store.getters.listaccuser;
+    accusers (){
+    return this.$store.getters.listaccusers;
     }
 
       },

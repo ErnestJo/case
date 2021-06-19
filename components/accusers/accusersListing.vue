@@ -8,10 +8,11 @@
       :items="datalist"
       :search="search"
       :options="body.options"
+      sort-by="isActive"
       :sort-desc="sortDesc"
       mobile-breakpoint="100"
       @click:row="handleClick"
-      :items-per-page="itemsperpage"
+      
       @update:page="updatePagination"
         >
         <template v-slot:top>
@@ -30,7 +31,7 @@
           <div >
              <v-btn medium  class="button" to="/accusers/add"
               ><v-icon>mdi-plus</v-icon
-              > Add Suspect </v-btn>
+              > Add New Case</v-btn>
           </div>
         </v-toolbar>
         </template>
@@ -70,9 +71,6 @@
                </v-tooltip>
           </template>
 
-           <template v-slot:no-data>
-        <h3>No Data available ...</h3>
-            </template>
         </v-data-table>
     </v-card>
 </template>
@@ -85,8 +83,8 @@ export default {
         search: "",
         sortDesc: false,  
          headers: [
-      { text: "Accuser Name", value: "name" , sortable: true},
-      { text: "Gender", value: "gender" },
+      { text: "Accuser Name", value: "properties" },
+      { text: "Gender", value: "createdAt" },
       { text: "Phone", value: "phone" },
       { text: "Age", value: "age" },
       { text: "Case Accused To", value: "" },
