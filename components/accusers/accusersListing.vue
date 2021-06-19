@@ -83,7 +83,7 @@ export default {
         search: "",
         sortDesc: false,  
          headers: [
-      { text: "Accuser Name", value: "properties" },
+      { text: "Accuser Name", value: "name" },
       { text: "Gender", value: "createdAt" },
       { text: "Phone", value: "phone" },
       { text: "Age", value: "age" },

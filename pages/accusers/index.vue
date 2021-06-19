@@ -7,7 +7,7 @@
  
         <v-card class="mx-auto default">
              <accuser-list
-             :datalists="accusers"
+             :datalist="accusers"
              :pagetitle="all_pagetitle"
              >
             </accuser-list>
@@ -32,13 +32,14 @@ export default {
     }),
 
      created(){
-    this.$store.dispatch("retrieveaccuser");
+    this.$store.dispatch("retrieve_accuser");
   },
 
       computed: {
         formTitle() {
       return this.editedIndex === -1 ? "New Item" : "Edit Item"; 
         },
+
     accusers (){
     return this.$store.getters.listaccusers;
     }

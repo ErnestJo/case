@@ -20,7 +20,7 @@ const state = () => ({
   
   const actions = {
   
-    async retrieveaccuser({ commit }) {
+    async retrieve_accuser({ commit }) {
       commit("ACCUSER");
       await this.$api.$get('/api/v1/accusers/')
           .then(response => {
