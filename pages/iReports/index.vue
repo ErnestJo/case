@@ -2,49 +2,45 @@
     <div>
         <div class="breadcrumb">
              <router-link to="/">Dashboard</router-link>
-            <router-link to="/cases" class="active">Cases</router-link>
+            <router-link to="/iReports" class="active">Cases</router-link>
         </div>
 
         <v-card class="mx-auto defaulf">
-            <case-list
-            :datalist="cases"
+            <ir-list
+            :datalist="ireports"
             :pagetitle="all_pagetitle"
              >    
-            </case-list>
+            </ir-list>
         </v-card>
     </div>
 </template>
 
 <script>
 
-import casesListing from "@/components/cases/casesListing";
+import iReportListing from "@/components/investigationReport/investigationReportListing";
 
 export default {
 
     components:{
-        "case-list": casesListing
+        "ir-list": iReportListing
     },
 
     data: () => ({
         dialog: false,
         search: "",
-        all_pagetitle: "All Cases"
+        all_pagetitle: "All ireport"
     }),
  created(){
-    this.$store.dispatch("retrieve_case");
+    this.$store.dispatch("retrieve_ireports");
   },
     computed: {
         formTitle() {
       return this.editedIndex === -1 ? "New Item" : "Edit Item"; 
         },
-    cases (){
-return this.$store.getters.listcases;
+    ireports (){
+    return this.$store.getters.listireports;
     }
     
-    
-    
-    
-
  },
 
   beforeMount() {

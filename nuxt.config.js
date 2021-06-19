@@ -1,69 +1,116 @@
-import colors from 'vuetify/es5/util/colors'
 
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
+  //router: {
+   // base: routerBase,
+  //  routerNameSplitter: '/',
+  //},
+  
+  env: {
+    developmentUrl: process.env.BASE_URL || 'https://pcase-api.herokuapp.com/',
+    releaseUrl: process.env.LIVE_URL || 'https://pcase-api.herokuapp.com/'
+  },
 
-  // Target: https://go.nuxtjs.dev/config-target
-  target: 'server',
-
-  // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - police-case-app',
-    title: 'police-case-app',
-    htmlAttrs: {
-      lang: 'en'
+    titleTemplate: 'POLICE CASE',
+    title: process.env.npm_package_name || '',
+    meta: [{
+      charset: 'utf-8'
     },
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+    {
+      name: 'viewport',
+      content: 'width=device-width, initial-scale=1'
+    },
+    {
+      hid: 'description',
+      name: 'description',
+      content: 'provides instant lending, and other personalized financial services in Tanzania and around the world. Millions of people have borrowed through Kopasmart’s smartphone app'
+    }
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    link: [{
+      rel: 'icon',
+      type: 'image/x-icon',
+      href: '/favicon.ico'
+    },
+    {
+      rel: 'stylesheet',
+      href: 'https://fonts.googleapis.com/css?family=Montserrat&display=swap"'
+    }
     ]
+  },
+
+  loading: {
+    color: '#333333',
+    throttle: 0
+  },
+
+  //This indicator is imported from SpinKit project https://tobiasahlin.com/spinkit/
+  loadingIndicator: {
+    name: 'rotating-plane',
+    color: ' #FFFFFF',
+    background: '#021E34'
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-   '@/assets/css/styles.css'
+    '@/assets/css/styles.css'
+ 
   ],
 
-  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/vuetify.js',
+    '@plugins/vuetify.js',
+    '~/plugins/axios',
+    '~/plugins/route',
+    '~/plugins/vue-apexcharts.js'
+ 
   ],
 
-  // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
-  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
   ],
 
-  // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+
+    '@nuxtjs/axios',
     'nuxt-material-design-icons',
+  
   ],
 
-  toast: {
-    position: 'bottom-right',
-    duration: 4000,
-    theme: 'bubble',
-    singleton: true,
-    iconPack: 'mdi'
-  },
+  axios: {},
 
-  // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
-  vuetify: {
-    customVariables: ['~/assets/variables.scss'],
   
-  },
 
-  // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    /*
+     ** You can extend webpack config here
+     */
+    publicPath: process.env.NODE_ENV !== 'dev' ? '/assets/' : '',
+    extend(config, ctx) { },
+    postcss: {
+      preset: {
+        features: {
+          customProperties: false
+        }
+      }
+    }
   },
-
+  pwa: {
+    manifest: {
+      name: 'Kopasmart',
+      lang: 'en'
+    },
+    meta: {
+      /* meta options */
+    },
+    icon: {
+      iconSrc: '/static/icon.png'
+    }
+  },
+  server: {
+    port: 3000, // default: 3000
+    host: '127.0.0.1', // default: localhost
+  },
 }

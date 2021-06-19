@@ -1,19 +1,17 @@
-<template>
-    
+<template> 
     <v-card>
         <v-data-table
-         dense
-      class="default"
-      :headers="headers"
-      :items="datalist"
-      :search="search"
-      :options="body.options"
-      sort-by="isActive"
-      :sort-desc="sortDesc"
-      mobile-breakpoint="100"
-      @click:row="handleClick"
-      
-      @update:page="updatePagination"
+            dense
+            class="default"
+            :headers="headers"
+            :items="datalist"
+            :search="search"
+            :options="body.options"
+            sort-by="isActive"
+            :sort-desc="sortDesc"
+            mobile-breakpoint="100"
+            @click:row="handleClick"
+            @update:page="updatePagination"
         >
         <template v-slot:top>
 
@@ -29,9 +27,9 @@
 
           <v-spacer></v-spacer>
           <div >
-             <v-btn medium  class="button" to="/cases/add"
+             <v-btn medium  class="button" to="/iReport/add"
               ><v-icon>mdi-plus</v-icon
-              > Add New Case</v-btn>
+              > Create Ir</v-btn>
           </div>
         </v-toolbar>
         </template>
@@ -71,9 +69,6 @@
                </v-tooltip>
           </template>
 
-           <template v-slot:no-data>
-        <h3>No Data available ...</h3>
-            </template>
         </v-data-table>
     </v-card>
 </template>
@@ -86,11 +81,10 @@ export default {
         search: "",
         sortDesc: false,  
          headers: [
-      { text: "Case Number", value: "caseNumber" },
-      { text: "Status", value: "status", sortable: true },
-      { text: "Assigned to", value: "" },
-      { text: "Created On", value: "createdAt" },
-      { text: "Created By", value: "" },
+      { text: "Investigation Number", value: "" },
+      { text: "Category Of Offence", value: "" },
+      { text: "Status", value: "phone" },
+      { text: "Report of Case", value: "" },
     ],
     desserts: [],
     editedIndex: -1,

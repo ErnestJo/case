@@ -91,8 +91,13 @@ export default {
     }
   }),
   computed: {
+case(){
 
+
+  return 
+}
   },
+ 
   methods: {
     login() {
     // this.$store.dispatch("_authenticate_then_login",  this.payload)

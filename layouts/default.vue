@@ -1,5 +1,9 @@
 <template>
-  <v-app dark>
+  <v-app 
+  class="app"
+   style="
+    background: rgba(0,0,0,0);"
+  >
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant="miniVariant"
@@ -24,6 +28,7 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
+
     </v-navigation-drawer>
     <v-app-bar
       :clipped-left="clipped"
@@ -84,12 +89,22 @@
 </template>
 
 <script>
+import Vue from "vue";
+import Vuex from "vuex";
+Vue.use(Vuex);
 export default {
   data () {
     return {
-      clipped: false,
-      drawer: false,
+       clipped: false,
+      mini: true,
+      drawer: true,
       fixed: false,
+      picture: true,
+      dark: false,
+      sync: false,
+      interval: {},
+
+       
       items: [
         {
           icon: 'mdi-apps',
@@ -108,6 +123,7 @@ export default {
           to: '/cases/add'
         }
       ],
+
       miniVariant: false,
       right: true,
       rightDrawer: false,

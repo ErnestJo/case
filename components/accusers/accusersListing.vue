@@ -29,9 +29,9 @@
 
           <v-spacer></v-spacer>
           <div >
-             <v-btn medium  class="button" to="/cases/add"
+             <v-btn medium  class="button" to="/accusers/add"
               ><v-icon>mdi-plus</v-icon
-              > Add New Case</v-btn>
+              > Add New Suspect</v-btn>
           </div>
         </v-toolbar>
         </template>
@@ -71,9 +71,6 @@
                </v-tooltip>
           </template>
 
-           <template v-slot:no-data>
-        <h3>No Data available ...</h3>
-            </template>
         </v-data-table>
     </v-card>
 </template>
@@ -86,11 +83,11 @@ export default {
         search: "",
         sortDesc: false,  
          headers: [
-      { text: "Case Number", value: "caseNumber" },
-      { text: "Status", value: "status", sortable: true },
-      { text: "Assigned to", value: "" },
-      { text: "Created On", value: "createdAt" },
-      { text: "Created By", value: "" },
+      { text: "Accuser Name", value: "name" },
+      { text: "Gender", value: "createdAt" },
+      { text: "Phone", value: "phone" },
+      { text: "Age", value: "age" },
+      { text: "Case Accused To", value: "" },
     ],
     desserts: [],
     editedIndex: -1,

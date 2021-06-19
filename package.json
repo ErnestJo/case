@@ -9,13 +9,16 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@nuxtjs/axios": "^5.13.5",
+    "@nuxtjs/toast": "^3.3.1",
     "apexcharts": "^3.27.1",
     "core-js": "^3.9.1",
     "nuxt": "^2.15.3",
     "nuxt-material-design-icons": "^1.0.4",
     "sweetalert": "^2.1.2",
     "vue-apexcharts": "^1.6.1",
-    "vue-pdf-print": "^1.0.3"
+    "vue-pdf-print": "^1.0.3",
+    "vue-toasted": "^1.1.28"
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.11.3",
