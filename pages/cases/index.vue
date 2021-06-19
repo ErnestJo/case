@@ -44,7 +44,7 @@ return this.$store.getters.listcases;
     
     
     
-  
+
  },
 
   beforeMount() {

@@ -31,7 +31,7 @@
           <div >
              <v-btn medium  class="button" to="/accusers/add"
               ><v-icon>mdi-plus</v-icon
-              > Add New Case</v-btn>
+              > Add New Suspect</v-btn>
           </div>
         </v-toolbar>
         </template>
