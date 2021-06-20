@@ -26,9 +26,9 @@
 
           <v-spacer></v-spacer>
           <div >
-             <v-btn medium  class="button" to="/iReport/add"
+             <v-btn medium  class="button" to="/staffs/add"
               ><v-icon>mdi-plus</v-icon
-              > Create Ir</v-btn>
+              > Add New User</v-btn>
           </div>
         </v-toolbar>
         </template>
