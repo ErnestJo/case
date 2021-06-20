@@ -58,10 +58,17 @@
           <span>{{ $t("label.tooltip.genderother") }}</span>
         </v-tooltip>
       </template>
-          <template v-slot: [`item.status`] = "{ item }">
-              
-          </template>
-
+         <template v-slot:[`item.role`]="{ item }">
+                  <v-chip
+                    small
+                    dense
+                    class="primary"
+                    v-for="role in item.user.roles"
+                    :key="role.id"
+                  >
+                    {{ role.name.toLowerCase() }}
+                  </v-chip>
+                </template>
         </v-data-table>
     </v-card>
 </template>
