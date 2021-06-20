@@ -32,33 +32,8 @@
           </div>
         </v-toolbar>
         </template>
-       <template v-slot:[`item.gender`]="{ item }">
-        <v-tooltip top v-if="item.gender == 'Female'" color="green">
-          <template v-slot:activator="{ on, attrs }">
-            <v-icon v-bind="attrs" v-on="on" small color="green darken-2"
-              >mdi-gender-female
-            </v-icon>
-          </template>
-          <span>{{ $t("label.tooltip.genderfemale") }}</span>
-        </v-tooltip>
-        <v-tooltip top v-if="item.gender == 'Male'" color="primary">
-          <template v-slot:activator="{ on, attrs }">
-            <v-icon v-bind="attrs" v-on="on" small color="primary darken-2"
-              >mdi-gender-male
-            </v-icon>
-          </template>
-          <span>{{ $t("label.tooltip.gendermale") }}</span>
-        </v-tooltip>
-        <v-tooltip top v-if="item.gender == 'Unspecified'" color="cyan">
-          <template v-slot:activator="{ on, attrs }">
-            <v-icon v-bind="attrs" v-on="on" small color="cyan darken-2"
-              >mdi-gender-male-female
-            </v-icon>
-          </template>
-          <span>{{ $t("label.tooltip.genderother") }}</span>
-        </v-tooltip>
-      </template>
-         <template v-slot:[`item.role`]="{ item }">
+   
+      <template v-slot:[`item.role`]="{ item }">
                   <v-chip
                     small
                     dense
@@ -81,7 +56,7 @@ export default {
         search: "",
         sortDesc: false,  
          headers: [
-             { text: "Title", value: "title" },
+      { text: "Title", value: "title" },
       { text: "Staff Name", value: "name" },
       { text: "Staff Work No", value: "" }, 
       { text: "Role", value: "role" },
@@ -114,7 +89,7 @@ export default {
   
   created() {},
 
- methods: {
+  methods: {
    
     editItem(item) {
       this.editedIndex = this.datalist.indexOf(item);
