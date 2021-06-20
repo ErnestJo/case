@@ -62,7 +62,7 @@ const state = () => ({
   const actions = {
     async _authenticate_then_login({ commit }, payload) {
       commit("SIGNIN");
-      await this.$api.$post(`auth/signin`, payload)
+      await this.$api.$post(`/api/v1/auth/login`, payload)
         .then(response => {
           if (response) {
             commit("SIGNIN_SUCCESS", response);
