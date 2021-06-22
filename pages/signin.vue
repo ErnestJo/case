@@ -97,7 +97,7 @@ export default {
     },
   methods: {
     login() {
-     this.$store.dispatch("_authenticate_then_login",  this.payload)
+     this.$store.dispatch("login",  this.payload)
     },
     nativateToHere(id) {
       this.$router.push('/' + id);

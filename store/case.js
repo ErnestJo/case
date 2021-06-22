@@ -53,12 +53,13 @@ const state = () => ({
       await this.$api.$post('/api/v1/cases/',payload)
           .then(response => {
             console.log(response);
+            console.log("lukelo");
             commit('sucess')
           
         }).catch(error => {
          
           commit('error')
-          //console.log(error);
+          console.log(error);
   
         });
     },
