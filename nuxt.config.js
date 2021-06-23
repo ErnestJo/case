@@ -14,7 +14,7 @@ export default {
     },
   
     head: {
-      titleTemplate: 'TASWO DASHBOARD',
+      titleTemplate: 'Police Case MS',
       title: process.env.npm_package_name || '',
       meta: [{
         charset: 'utf-8'
@@ -26,7 +26,7 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: 'provides instant lending, and other personalized financial services in Tanzania and around the world. Millions of people have borrowed through Kopasmart’s smartphone app'
+        content: 'Provide management of cases in the Police stations'
       }
       ],
       link: [{
