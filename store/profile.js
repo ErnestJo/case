@@ -1,7 +1,6 @@
 const state = () => ({
     showLoader: Boolean,
     profile: {},
-    staff: {},
     profileimage: String
   });
   
@@ -19,8 +18,6 @@ const state = () => ({
     ["GET_PROFILE_SUCCESS"](state, payload) {
       state.showLoader = false;
       state.profile = payload;
-      state.staff = payload.staff;
-      state.profileimage = payload.staff.imageUrl;
   
     },
   
@@ -44,25 +41,23 @@ const state = () => ({
       commit("GET_PROFILE");
       await this.$api.$get("api/v1/auth/me")
         .then(response => {
-          commit("GET_PROFILE_SUCCESS", response);
-  
+            commit("GET_PROFILE_SUCCESS", response);
+            console.log(response)
         }).catch(error => {
           commit("GET_PROFILE_ERROR");
           console.log(error);
-  
         });
   
     },
     async _update_user_password({ commit }, payload) {
       commit("UPDATE_PASSWORD");
-      await this.$api.$post("api/v1/auth/updatepassword", payload)
+      await this.$api.$put("api/v1/auth/updatepassword", payload)
         .then(response => {
           commit("UPDATE_PASSWORD_SUCCESS", response);
           console.log(response)
           if (response.httpStatus === 200) {
             commit("SIGNOUT_SUCCESS")
           }
-  
   
         }).catch(error => {
           commit("UPDATE_PASSWORD_ERROR");
