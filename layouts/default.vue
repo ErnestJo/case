@@ -69,7 +69,6 @@
       >
          <v-btn fab small class="button" to="/me">
           <v-avatar size="35">
-             <!-- <v-img :src="thumbnail"></v-img>  -->
           </v-avatar>
         </v-btn> 
       </v-badge>
@@ -92,8 +91,6 @@
           </v-btn>
         </template>
 
-        <!-- <span v-if="sync" color="white"></span>
-        <span v-else color="white">{{ $t("label.tooltip.synchronise") }}</span> -->
       </v-tooltip>
 
       <v-tooltip bottom color="primary" open-on-hover open-delay="500" >
@@ -107,22 +104,7 @@
         </template>
        
       </v-tooltip>
-     
-      <!-- <v-badge class="mr-3" icon="mdi-lock" color="blue" bottom overlap>
-        <template v-slot:badge>
-        </template>
-        <v-btn fab small class="primary" elevation="0" to="/me">
-          <v-icon medium color="white">mdi-account</v-icon></v-btn
-        >
-      </v-badge>
-      <v-badge class="mr-3" icon="mdi-lock" color="blue" bottom overlap>
-        <template v-slot:badge>
-        </template>
-        <v-btn fab small class="primary" elevation="0" to="/me">
-          <v-icon medium color="white">mdi-logout-variant</v-icon></v-btn
-        >
-      </v-badge> -->
-
+  
        <v-btn
         fab
         x-small
@@ -253,22 +235,6 @@ export default {
           "url(https://cdn.hipwallpaper.com/i/50/79/MSsZP2.jpg)";
       }
     },
-    syncro: async function() {
-      const vm = this;
-      vm.sync = !vm.sync;
-      await Promise.all([
-        vm.$store.dispatch("retrievepatients"),
-        vm.$store.dispatch("retrievephysicians")
-      ]).then(function() {
-        console.log("Loading complete...");
-      });
-      setTimeout(() => {
-        vm.sync = !vm.sync;
-      }, 2000);
-    },
-    changeLanguage(lang) {
-      this.$i18n.locale = lang;
-    }
   },
   beforeDestroy() {
     clearInterval(this.interval);
