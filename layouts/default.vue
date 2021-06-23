@@ -143,7 +143,8 @@
     <v-footer
       :absolute="!fixed"
       app
-      color= "#44C4F1"
+      dark
+      color= "primary"
     >
       <span>&copy; {{ new Date().getFullYear() }} ErnestUiLabs</span>
     </v-footer>
