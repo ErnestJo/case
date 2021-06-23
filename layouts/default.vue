@@ -57,7 +57,6 @@
         >
       </v-toolbar-title>
       <v-spacer />
-
       <v-badge
         bordered
         bottom
@@ -167,8 +166,7 @@ export default {
       dark: false,
       sync: false,
       interval: {},
-
-       
+ 
       items: [
         {
           icon: 'mdi-apps',
@@ -202,9 +200,9 @@ export default {
           this.$router.push("/profile");
           break;
         case 1:
-        localStorage.removeItem("qAccessToken");
+          localStorage.removeItem("qAccessToken");
           localStorage.removeItem("uuId");
-          this.$router.push("/");
+          this.$router.push("/signin");
           break;
       }
     },
@@ -212,8 +210,7 @@ export default {
       this.drawer = !this.drawer;
     },
   logoutsession: function() {
-      this.$store.dispatch("_clear_local_storage_and_sign_out");
-      
+      this.$store.dispatch("_clear_local_storage_and_sign_out"); 
     },
     changemode: function() {
       this.dark = !this.dark;

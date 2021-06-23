@@ -39,13 +39,7 @@
                                             outlined
                                          
                                         >
-                                         <!-- <template slot="selection" slot-scope="data">
-                                        {{ data.item.name }}
-                                        </template>
-                                        <template slot="item" slot-scope="data">
-                                        {{ data.item.name }}, ({{ data.item.value }})
-                                        </template> -->
-
+                                  
                                         </v-select>
                                     </v-col>
                                     <v-col cols="12">
@@ -84,16 +78,9 @@
                                             label="Occupation"
                                              item-value="value"
                                              outlined
-                                             persistent-hint
-                                            
-                                             
+                                             persistent-hint   
                                         >
-                                         <!-- <template slot="selection" slot-scope="data">
-                                        {{ data.item.name }}
-                                        </template>
-                                        <template slot="item" slot-scope="data">
-                                        {{ data.item.name }}, ({{ data.item.value }})
-                                        </template> -->
+                                     
                                         </v-select>
                                     </v-col>    
                                 </v-row>
@@ -110,12 +97,6 @@
                                              item-value="value"
                                            
                                         >
-                                         <!-- <template slot="selection" slot-scope="data">
-                                        {{ data.item.name }}
-                                        </template>
-                                        <template slot="item" slot-scope="data">
-                                        {{ data.item.name }}, ({{ data.item.value }})
-                                        </template> -->
                                         </v-select>
                                     </v-col> 
                                 </v-row>
