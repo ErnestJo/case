@@ -219,7 +219,9 @@ export default {
           this.$router.push("/profile");
           break;
         case 1:
-       this.logoutsession()
+        localStorage.removeItem("qAccessToken");
+          localStorage.removeItem("uuId");
+          this.$router.push("/");
           break;
       }
     },
