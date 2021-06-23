@@ -230,7 +230,7 @@
             </v-dialog>
           </v-toolbar>
 
-            <v-card-text >
+            <v-card-text   v-if="user != null">
           <v-container>
             <v-list three-line flat width="100%" class="default">
               <v-list-item>
@@ -241,12 +241,12 @@
                 <v-list-item-content>
                   <v-list-item-title>
                     <strong
-                      ><h3>Username: </h3></strong
+                      ><h3>Username: {{ user.data.name }} </h3></strong
                     ></v-list-item-title
                   >
                   <v-list-item-subtitle
                     ><strong
-                      >Email:</strong
+                      >Email: {{ user.data.email}}</strong
                     ></v-list-item-subtitle
                   >
                 </v-list-item-content>
@@ -254,7 +254,7 @@
             </v-list>
           </v-container>
         </v-card-text>
-        <v-card-text>
+        <v-card-text v-else>
           <v-progress-circular
             :width="2"
             color="primary"
@@ -293,7 +293,16 @@ export default {
     }
   }),
 
+   beforeCreate() {
+    this.$store.dispatch("retrieve_profile");
+  },
+
   methods: {
+     closeprofileupdate: function() {
+      this.$store.dispatch("retrieve_profile");
+      this.edit = false;
+      this.progress = false;
+    },
 
        updatepasssword() {
       this.$store.dispatch("_update_user_password", this.form_data);
@@ -317,6 +326,13 @@ export default {
       }
     }
   },
+
+  computed: {
+    user() {
+      return this.$store.getters.profile
+    }
+  }
+
 }
 </script>
 
