@@ -1,28 +1,24 @@
-// export default function ({
-//   app,
-//   route,
-//   from,
-//   store,
-//   redirect
-// }) {
-//   // app.router.beforeEach((to, from, next) => {
-//   //   if (localStorage.getItem('qAccessToken') === null && to.path !== '/signin' ) {
-//   //     console.log("Entering the route:  " + to.path);
+export default function ({
+  app,
+  route,
+  from,
+  store,
+  redirect
+}) {
+  app.router.beforeEach((to, from, next) => {
+    if (localStorage.getItem('qAccessToken') === null && to.path !== '/signin' ) {
+      console.log("Entering the route:  " + to.path);
 
-//   //     next('/signin');
-
-
-//   //   } else {
-//   //     console.log("Entering the route:  " + to.path);
-//   //     next();
-//   //   }
+      next('/signin');
 
 
+    } else {
+      console.log("Entering the route:  " + to.path);
+      next();
+    }
 
-
-
-//   });
-//   app.router.afterEach((to, from) => {
-//     console.log("After leaving the route");
-//   });
-// }
+  });
+  app.router.afterEach((to, from) => {
+    console.log("After leaving the route");
+  });
+}

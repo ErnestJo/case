@@ -33,20 +33,13 @@
                                         v-model="editedItem.gender"
                                           :hint="` ${editedItem.gender.name}`"
                                           :items="genderoptions"
-                                            label="Select"
-                                             item-value="value"
-                                             outlined
-                                             persistent-hint
-                                              return-object
-                                             single-line
+                                            label="Gender"
+                                            dense
+                                            item-value="value"
+                                            outlined
+                                         
                                         >
-                                         <template slot="selection" slot-scope="data">
-                                        {{ data.item.name }}
-                                        </template>
-                                        <template slot="item" slot-scope="data">
-                                        {{ data.item.name }}, ({{ data.item.value }})
-                                        </template>
-
+                                  
                                         </v-select>
                                     </v-col>
                                     <v-col cols="12">
@@ -80,21 +73,14 @@
                                         <v-col cols="12">
                                         <v-select
                                         v-model="editedItem.occupation"
-                                          :hint="` ${editedItem.occupation.name}`"
+                                          :hint="` ${editedItem.occupation}`"
                                           :items="occupationoptions"
-                                            label="Select"
+                                            label="Occupation"
                                              item-value="value"
                                              outlined
-                                             persistent-hint
-                                              return-object
-                                             single-line
+                                             persistent-hint   
                                         >
-                                         <template slot="selection" slot-scope="data">
-                                        {{ data.item.name }}
-                                        </template>
-                                        <template slot="item" slot-scope="data">
-                                        {{ data.item.name }}, ({{ data.item.value }})
-                                        </template>
+                                     
                                         </v-select>
                                     </v-col>    
                                 </v-row>
@@ -103,22 +89,14 @@
                                 <v-row no-gutters>
                                     <v-col cols="12">
                                         <v-select
-                                        v-model="editedItem.immeadiateActioin"
-                                          :hint="` ${editedItem.immeadiateActioin.name}`"
+                                        v-model="editedItem.immeadiateAction"
+                                          :hint="` ${editedItem.immeadiateAction}`"
                                           :items="immeadiateactioinoptions"
                                             label="Select"
-                                             item-value="value"
                                              outlined
-                                             persistent-hint
-                                              return-object
-                                             single-line
+                                             item-value="value"
+                                           
                                         >
-                                         <template slot="selection" slot-scope="data">
-                                        {{ data.item.name }}
-                                        </template>
-                                        <template slot="item" slot-scope="data">
-                                        {{ data.item.name }}, ({{ data.item.value }})
-                                        </template>
                                         </v-select>
                                     </v-col> 
                                 </v-row>
@@ -154,6 +132,19 @@
 <script>
 export default {
     data: () => ({
+
+      occupationoptions: [
+      "Mfugaji", 
+       "student", 
+      "Business Man"
+    ],
+    
+    immeadiateactioinoptions: [
+    "Give Pf3", 
+     "Arresting Warrant", 
+    "No action taken"
+    ],
+    genderoptions: ["Male","Female", "Unspecified"],
     title: "Create New Patient",
     formHasErrors: false,
     valid: true,
@@ -162,14 +153,14 @@ export default {
       phone: "",
       address: "",
       age: 0,
-      gender: 0,
+      gender: "",
       arrested: false,
       description: "",
       occupation: "",
       immeadiateActioin: "",
       finalDisposal: "",
       policeOfficerTakingIntialAction: "",
-    
+      nationalilty: "hghjghj",
 
     },
     defaultItem: {
@@ -177,14 +168,14 @@ export default {
       phone: "",
       address: "",
       age: 0,
-      gender: 0,
+      gender: "",
       arrested: false,
       description: "",
       occupation: "",
       immeadiateActioin: "",
       finalDisposal: "",
       policeOfficerTakingIntialAction: "",
-    
+      nationalilty: "",
       
     },
     rules: {
@@ -195,36 +186,31 @@ export default {
         return pattern.test(value) || "Invalid e-mail.";
       }
     },
-    genderoptions: [
-      { name: "Male", value: 1 },
-      { name: "Female", value: 2 },
-      { name: "Unspecified", value: 0 }
-    ],
+    
 
     occupationoptions: [
-      { name: "Mfugaji", value: 1 },
-      { name: "student", value: 2 },
-      { name: "Business Man", value: 0 }
+      "Mfugaji", 
+       "student", 
+      "Business Man"
     ],
 
     immeadiateactioinoptions: [
-      { name: "Give Pf3", value: 1 },
-      { name: "Arresting Warrant", value: 2 },
-      { name: "No action taken", value: 0 }
+    "Give Pf3", 
+     "Arresting Warrant", 
+    "No action taken"
     ]
   }),
 
    methods: {
     close() {},
     save() {
-      this.editedItem.gender = this.editedItem.gender.name;
-      this.editedItem.immeadiateActioin = this.editedItem.immeadiateActioin;
-      this.editedItem.occupation = this.editedItem.occupation;
+ 
       console.log(this.editedItem);
       var state = this.$refs.form.validate();
       this.$refs.form.validate();
       if (state) {
-        this.$store.dispatch("", this.editedItem);
+        console.log(this.editedItem)
+        this.$store.dispatch("post_case", this.editedItem);
       }
     }
   }

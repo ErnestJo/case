@@ -90,23 +90,17 @@ export default {
       emailMatch: () => "The email and password you entered don't match"
     }
   }),
-  computed: {
-      error() {
-        return this.$store.getters.Signerror;
-      }
-    },
-  methods: {
-    login() {
-     this.$store.dispatch("login",  this.payload)
-    },
-    nativateToHere(id) {
-      this.$router.push('/' + id);
-    },
-  },
-   beforeMount() {
-      if (localStorage.getItem("qAccessToken") != null) {
-        this.$router.push("/signin");
+ 
+ methods: {
+    async login() {
+      try {
+        let response = await this.$auth.loginWith('local', { data: this.payload })
+        console.log(response)
+      } catch (err) {
+        console.log(err)
       }
     }
+  }
+
 }
 </script>

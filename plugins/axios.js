@@ -15,7 +15,8 @@ export default function ({
   });
   api.onRequest(config => {
     if (localStorage.getItem('qAccessToken') != null) {
-      api.setHeader('Authorization', 'Token ' + localStorage.getItem('qAccessToken'));
+      api.setHeader('Authorization', 'BearerToken ' + localStorage.getItem('qAccessToken'));
+      api.setHeader('Content-Type', 'application/json')
     }
     console.log('Making request to ' + config.url);
   });

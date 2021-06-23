@@ -46,11 +46,15 @@ const state = () => ({
     },
     
   
-    async post_case({ commit }) {
-      //commit("CASE");
+    async post_case({ commit },payload) {
+      commit("CASE");
+
+      console.log("sadas");
       await this.$api.$post('/api/v1/cases/',payload)
           .then(response => {
-              commit('sucess')
+            console.log(response);
+            console.log("lukelo");
+            commit('sucess')
           
         }).catch(error => {
          
@@ -60,8 +64,6 @@ const state = () => ({
         });
     },
     
-
-
   }
   const getters = {
     transactionsperday: function (state) {
