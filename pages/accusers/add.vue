@@ -90,16 +90,68 @@
                                         v-model="editedItem.nationalilty"
                                           :hint="` ${editedItem.nationalilty}`"
                                           :items="nationaliltyoptions"
-                                            label="Select "
+                                            label="Select nationanality"
                                              outlined
                                              item-value="value"   
                                         > 
                                         </v-select>
                                     </v-col> 
 
+                                     <v-col cols="12">
+                                       <v-checkbox
+                                        v-model="editedItem.arrested"
+                                        label="Is Accuser Arrrested"
+                                        ></v-checkbox>
+                                    </v-col> 
+
+                                    <v-col cols="12">
+                                        <v-select
+                                          v-model="editedItem.policeOfficerIncharge"
+                                          :disabled="!editedItem.arrested"
+                                          :hint="` ${editedItem.policeOfficerIncharge}`"
+                                          :items="nationaliltyoptions"
+                                            label="Select select officer arrested Accuser"
+                                             outlined
+                                             item-value="value"   
+                                        > 
+                                        </v-select>
+                                    </v-col> 
+                                       <v-col cols="12">
+                                        <v-text-field
+                                        :disabled="!editedItem.arrested"
+                                        v-model="editedItem.nextOfkinName"
+                                        outlined
+                                        label="Next Of Kin full  name"
+                                        :rules="[rules.required]"
+                                        hint="Complaint Full name E.g Ali mayai  (Mandatory)">
+                                        </v-text-field>
+                                    </v-col> 
+
+                                     <v-col cols="12">
+                                     <v-text-field
+                                        v-model="editedItem.nextOfkinNumber"
+                                        :disabled="!editedItem.arrested"
+                                        outlined
+                                        label="Next of Kin Phone No."
+                                        hint="Patient phone No. e.g +255716xxxxxx (Mandatory)"
+                                        :rules="[rules.required]"
+                                    ></v-text-field>
+                                    </v-col> 
+
+                                    <v-col cols="12">
+                                        <v-select
+                                          v-model="editedItem.nextOfkinRelatioinship"
+                                          :disabled="!editedItem.arrested"
+                                          :hint="` ${editedItem.nextOfkinRelatioinship}`"
+                                          :items="nationaliltyoptions"
+                                            label="Relationship with kin"
+                                             outlined
+                                             item-value="value"   
+                                        > 
+                                        </v-select>
+                                    </v-col> 
                                 </v-row>
                             </v-col>
-
                                 <v-col cols="12" sm="6" md="4">
                                          <v-row no-gutters>
                                 <v-col cols="12">
@@ -111,6 +163,18 @@
                                     hint="Case Description"
                                 ></v-textarea>
                                 </v-col>
+
+                                        <v-col cols="12">
+                                        <v-text-field
+                                        :disabled="!editedItem.arrested"
+                                        v-model="editedItem.properties"
+                                        outlined
+                                        label="Next Of Kin full  name"
+                                        :rules="[rules.required]"
+                                        hint="Complaint Full name E.g Ali mayai  (Mandatory)">
+                                        </v-text-field>
+                                    </v-col> 
+
                             </v-row>
                             </v-col>
                         </v-row>
@@ -131,9 +195,9 @@
 export default {
     data: () => ({
 
-      occupationoptions: [
+    occupationoptions: [
       "Mfugaji", 
-       "student", 
+      "student", 
       "Business Man"
     ],
     
@@ -155,6 +219,7 @@ export default {
       description: "",
       occupation: "",
       arrested: false,
+      properties:"",
       policeOfficerIncharge: "",
       nationalilty: "",
       nextOfkinName: "",
