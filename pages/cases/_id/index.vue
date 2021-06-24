@@ -1,11 +1,13 @@
 <template>
   <div>
     <div class="breadcrumb" v-if="userdata != null">
-      <router-link to="/">Dashboard</router-link>
-      <router-link to="/patients">Patients</router-link>
-      <!-- <router-link :to="`/patients/${this.$route.params.id}`" class="active">{{
+      <router-link to="/">{{ $t("label.breadcrumb.dashboard") }}</router-link>
+      <router-link to="/patients">{{
+        $t("label.breadcrumb.patients")
+      }}</router-link>
+      <router-link :to="`/patients/${this.$route.params.id}`" class="active">{{
         username
-      }}</router-link> -->
+      }}</router-link>
     </div>
 
     <v-card class="mx-auto default">
@@ -45,29 +47,29 @@ export default {
     };
   },
 
-  // methods: {
-  //   async viewusedata() {
-  //     return await this.$api
-  //       .$get(`patients/${this.$route.params.id}/`)
-  //       .then(response => {
-  //         this.userdata = response;
-  //       })
-  //       .catch(error => {
-  //         console.log(error);
-  //       });
-  //   },
-  //   reUpdateProfile: function() {
-  //     this.viewusedata();
-  //   }
-  // },
-  // created() {
-  //   this.viewusedata();
-  // },
-  // computed: {
-  //   username() {
-  //     return this.userdata == null ? "" : this.userdata.name;
-  //   }
-  // }
+  methods: {
+    async viewusedata() {
+      return await this.$api
+        .$get(`api/v1/cases/${this.$route.params.id}/`)
+        .then(response => {
+          this.userdata = response;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
+    reUpdateProfile: function() {
+      this.viewusedata();
+    }
+  },
+  created() {
+    this.viewusedata();
+  },
+  computed: {
+    username() {
+      return this.userdata == null ? "" : this.userdata.name;
+    }
+  }
 };
 </script>
 
