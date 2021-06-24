@@ -50,29 +50,122 @@
                 dark
                 :to="``"
               >
-                Add contacts
-              </v-btn>
-              <v-btn
-                small
-                block
-                dark
-                class="button mt-2"
-                :to="``"
-              >
-                Create self service user
+                Create Investigation Report
               </v-btn>
             </v-col>
           </v-card-actions>
         </v-card>
       </v-col>
+       <v-col xs="12" md="9" sm="12">
+         <v-tabs
+          slider-color="blue"
+          background-color="primary"
+          slider-size="3"
+          left
+          dark
+          v-model="tab"
+        >
+          <v-tab class="ffont-weight-normal">
+            <span
+              ><v-icon small left>mdi-account-question</v-icon>Case Details</span
+            >
+          </v-tab>
+          <v-tab class="font-weight-normal" >
+            <v-icon small left>mdi-clock-check</v-icon>
+            Accusers
+          </v-tab>
+          <v-tab
+            class="font-weight-normal" 
+          >
+            <v-icon small left>mdi-shield-sun</v-icon>
+            Investigation Report
+          </v-tab>
+        </v-tabs>
+           <v-tabs-items vertical v-model="tab">
+              <v-tab-item class="default">
+            <tb-case></tb-case>
+            </v-tab-item>
+            <v-tab-item class="default">
+            <div class="">
+              <v-btn
+                class="button small ma-2"
+                small
+                ><v-icon small left>mdi-plus</v-icon>New Accuser</v-btn
+              >
+              <tb-accuser></tb-accuser>
+            </div>
+          </v-tab-item>
+    <v-tab-item class="default">
+            <tb-ireport
+            ></tb-ireport>
+          </v-tab-item>
+           </v-tabs-items>
+       </v-col>
     </v-row>
 
   </v-container>
 </template>
 
 <script>
-export default {
 
+import CaseTab from "@/components/profile/tabs/cases.vue"
+import c_type_divider from "@/components/profile/c_type_divider";
+import AccuserTab from "@/components/profile/tabs/accuser.vue";
+import AddressCard from "@/components/profile/c_address_card.vue";
+import IreportTab from "@/components/profile/tabs/iReport.vue";
+
+export default {
+  props: {
+    userdata:{
+      type: Object,
+      default: null
+    }
+    },
+  components: {
+    'v-type-divider': c_type_divider,
+    'tb-case': CaseTab,
+    'tb-accuser': AccuserTab,
+    'v-address-card': AddressCard,
+    'tb-ireport': IreportTab
+  },
+
+    data() {
+    return {
+      dialog: false,
+      uploaddialog: false,
+      currentFile: undefined,
+      rate: false,
+      tab: null,
+      valid: true,
+      rating: 2,
+      posts: null,
+      comments: null,
+      admissions: null,
+      followings: null,
+      followers: null,
+      selectedstaffId: null,
+      active: true,
+      date: new Date().toISOString().substr(0, 7),
+      menu: false,
+      modal: false,
+      emptyIcon: 'mdi-star-outline',
+      fullIcon: 'mdi-star',
+      halfIcon: 'mdi-star-half-full',
+      address: null,
+      staff:null,
+      services: null,
+      cards:[],
+      diagnoses: null,
+        attrs: {
+        class: 'mb-6',
+        boilerplate: true,
+        elevation: 2,
+      },
+
+
+
+    }
+  },
 }
 </script>
 
@@ -90,3 +183,26 @@ export default {
   width: 100%;
 }
 </style>
+
+
+<!-- <v-tabs-items vertical v-model="tab">
+          <v-tab-item class="default">
+            <tb-case></tb-case>
+          </v-tab-item>
+
+          <v-tab-item class="default">
+            <div class="">
+              <v-btn
+                class="button small ma-2"
+                small
+                ><v-icon small left>mdi-plus</v-icon>New Accuser</v-btn
+              >
+              <tb-accuser></tb-accuser>
+            </div>
+          </v-tab-item>
+
+          <v-tab-item class="default">
+            <tb-ireport
+            ></tb-ireport>
+          </v-tab-item>
+        </v-tabs-items> -->
