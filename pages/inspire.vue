@@ -19,10 +19,50 @@
                 ></v-progress-circular>
               </v-row>
             </template>
-            <v-card-title>
-              
+            <v-card-title>  
             </v-card-title>
          </v-img>
+          <v-card-text>
+            <p class="overline">Contacts</p>
+            <v-divider></v-divider>
+
+            <v-flex xs12 md12 class="ma-0 pa-0" v-if="address !== null">
+              <v-address-card :address="address"></v-address-card>
+            </v-flex>
+          </v-card-text>
+
+          <v-card-actions>
+            <v-col>
+              <v-btn
+                small
+                block
+                class="button"
+                v-if="address"
+                dark
+                :to="`/`"
+                >View contacts</v-btn
+              >
+              <v-btn
+                small
+                block
+                class="button"
+                v-else
+                dark
+                :to="``"
+              >
+                Add contacts
+              </v-btn>
+              <v-btn
+                small
+                block
+                dark
+                class="button mt-2"
+                :to="``"
+              >
+                Create self service user
+              </v-btn>
+            </v-col>
+          </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
