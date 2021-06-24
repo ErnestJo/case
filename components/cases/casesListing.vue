@@ -1,5 +1,4 @@
-<template>
-    
+<template> 
     <v-card>
         <v-data-table
          dense
@@ -12,7 +11,6 @@
       :sort-desc="sortDesc"
       mobile-breakpoint="100"
       @click:row="handleClick"
-      
       @update:page="updatePagination"
         >
         <template v-slot:top>
@@ -149,11 +147,7 @@ export default {
     formTitle() {
       return this.editedIndex === -1 ? "New Item" : "Edit Item";
     },
-    isAppointmentRoute: {
-      get() {
-        // get route of cases
-      }
-    }
+   
   },
 
   watch: {
@@ -182,7 +176,7 @@ export default {
     },
 
     handleClick: function(value) {
-    //   this.$router.push("/patients/" + value.id);
+      this.$router.push("/cases/" + value.id);
     },
     initialize() {},
     updatePagination: function(val) {
@@ -191,7 +185,7 @@ export default {
   },
 
   beforeMount() {
-    // this.$store.dispatch("retrievepatients");
+    this.$store.dispatch("retrieve_case");
   }
 }
 </script>

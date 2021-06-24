@@ -66,7 +66,7 @@ const state = () => ({
   
     async retrieve_staff({ commit }) {
       commit("USER");
-      await this.$api.$get('/api/v1/users/')
+      await this.$api.$get('api/v1/users/')
           .then(response => {
               console.log(response.data);
           commit("USER_SUCCESS", response);
@@ -77,7 +77,7 @@ const state = () => ({
 
     async retrieve_user_info({ commit }) {
       commit("USER_INFO");
-      await this.$api.$get('/api/v1/users/me')
+      await this.$api.$get('api/v1/auth/me')
           .then(response => {
               console.log(response.data);
           commit("USER_INFO_SUCCESS", response);
@@ -88,7 +88,7 @@ const state = () => ({
 
     async create_new_user({ commit }, payload) {
       commit("CREATE_NEW_USER");
-      await this.$api.$post(`/api/v1/users/`, payload)
+      await this.$api.$post(`api/v1/users/`, payload)
         .then(response => {
           if (response.statusCode === 200) {
             commit("CREATE_NEW_USER_SUCCESS", response);
@@ -102,7 +102,7 @@ const state = () => ({
   
     async delete_user({ commit }, payload) {
       commit("DELETE_USER");
-      await this.$api.$delete(`/api/v1/users/${payload.id}`)
+      await this.$api.$delete(`api/v1/users/${payload.id}`)
         .then(response => {
           if (response.statusCode === 200) {
             commit("DELETE_USER_SUCCESS", response);
@@ -115,7 +115,7 @@ const state = () => ({
 
     async updateuserdetails({ commit }, payload) {
       commit("UPDATE_USER");
-      await this.$api.$put(`/api/v1/users/${payload.id}`, payload.data)
+      await this.$api.$put(`api/v1/users/${payload.id}`, payload.data)
         .then(response => {
           console.log(response);
           if (response.statusCode === 200) {
