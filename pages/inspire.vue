@@ -1,93 +1,62 @@
 <template>
-  <v-card class="mx-auto default "> 
-    <div md12>
+  <v-container fluid>
+    <!-- <v-progress-circular
+     
+      indeterminate
+      color="grey"
+      size="24"
+    ></v-progress-circular> -->
+    <div >
       <v-data-table
         dense
+        class="default"
         :headers="headers"
-        :items="services"
         :search="search"
-        width="100%"
+        mobile-breakpoint="100"
         @click:row="handleClick"
         @update:page="updatePagination"
-        >
-        <template v-slot:top>
-          <v-toolbar flat color="primary" dark>
-            <h2>
-              <strong></strong>
-            </h2>
-            <v-spacer></v-spacer>
-            <v-text-field
-              v-model="search"
-              append-icon="search"
-              label="Enter search text ..."
-              dense
-              single-line
-              hide-details
-            ></v-text-field>
-          </v-toolbar>
-        </template>
-
-         <template v-slot:[`item.isActive`]="{ item }">
-          <v-tooltip right v-if="item.isActive" color="primary">
-            <template v-slot:activator="{ on, attrs }">
-              <v-icon v-bind="attrs" v-on="on" small color="red lighten-2"
-                >mdi-check</v-icon
-              >
-            </template>
-            <span>Active</span>
-          </v-tooltip>
-          <div v-else></div>
-        </template>
-        <!-- <template v-slot:[`item.patientName`]="{ item }">
-          {{ item.patientName }} ( {{ item.patientId }})
-        </template> -->
-        <template v-slot:[`item.staffName`]="{ item }">
-          <p v-if="item.assignedTo == null">Unassigned</p>
-          <!-- <p v-else>( {{ item.staffId }})</p> -->
-        </template>
+      >
       </v-data-table>
     </div>
-  </v-card>
+  </v-container>
 </template>
-
 <script>
-export default {
 
+import ServiceCard from "@/components/profile/consultation_card";
+export default {
+  components: {
+    "service-card": ServiceCard
+  },
   props: {
-  
-    title: {
-      type: String,
-      default: "Hakijulikani"
+    services: {
+      type: Array,
+      default: null
     }
   },
-   data: () => ({
+  data: () => ({
     search: null,
     headers: [
-      { text: "Patient Name", value: "patientName", sortable: false },
-      { text: "Investigator", value: "assignedTo" },
-      { text: "Is Active?", value: "isActive" },
-      { text: "From", value: "fromDate" },
-      { text: "To", value: "toDate" }
+      { text: "Accuser Name", value: "name" },
+      { text: "Accuser Age", value: "age" },
+      { text: "Accuser Phone", value: "accuserName", sortable: false },
+      { text: "Accuser Occupation", value: "accuserOccupation" },
+      { text: "Accuser Nationality ", value: "accuserNationlity" },
     ],
     body: {
       options: {
         page: 1,
         itemsPerPage: 5,
-        sortBy: ["assignedTo"]
+        sortBy: ["accuserName"]
       }
     }
-   }),
-  // methods: {
-  //   handleClick: function(value) {
-  //     this.$router.push("/consultations/" + value.id);
-  //   },
-  //   updatePagination: function(val) {
-  //     console.log(val);
-  //   }
-  // }
-}
+  }),
+//   methods: {
+//     handleClick: function(value) {
+//       this.$router.push("/consultations/" + value.id);
+//     },
+//     updatePagination: function(val) {
+//       console.log(val);
+//     }
+//   }
+};
 </script>
-
-<style>
-
-</style>

@@ -1,17 +1,16 @@
 <template>
   <v-container fluid>
-    <v-progress-circular
-      v-if="services == null"
+    <!-- <v-progress-circular
+     
       indeterminate
       color="grey"
       size="24"
-    ></v-progress-circular>
-    <div v-else>
+    ></v-progress-circular> -->
+    <div >
       <v-data-table
         dense
         class="default"
         :headers="headers"
-        :items="services"
         :search="search"
         mobile-breakpoint="100"
         @click:row="handleClick"
@@ -23,6 +22,7 @@
 </template>
 <script>
 
+import ServiceCard from "@/components/profile/consultation_card";
 export default {
   components: {
     "service-card": ServiceCard
