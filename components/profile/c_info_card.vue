@@ -1,16 +1,19 @@
+
+
+
 <template>
   <v-container fill-height fluid grid-list-xl>
     <v-row>
-      <v-col xs="12" md="3" sm="12">
+      <v-col xs="12" md="3" sm="12" >
         <v-card flat>
-          <v-img
-            :src="filebaseUri + entityThumbNail"
+         <v-img
+             :src="filebaseUri + entityThumbNail"
             lazy-src="https://www.attendanceworks.org/wp-content/uploads/2020/09/img-placeholder.png"
             aspect-ratio="1"
             class="grey lighten-2 align-end"
             height="200px"
             max-height="200px"
-          >
+         >
             <template v-slot:placeholder>
               <v-row class="fill-height ma-0" align="center" justify="center">
                 <v-progress-circular
@@ -19,99 +22,9 @@
                 ></v-progress-circular>
               </v-row>
             </template>
-            <v-card-title>
-              <v-list three-line flat width="100%" class="default">
-                <v-list-item>
-                  <v-list-item-avatar size="60">
-                    <v-img
-                      :src="filebaseUri + entityThumbNail"
-                      lazy-src="https://aosa.org/wp-content/uploads/2019/04/image-placeholder-350x350.png"
-                    ></v-img>
-                  </v-list-item-avatar>
-
-                  <v-list-item-content>
-                    <v-list-item-title> {{ userdata.name }}</v-list-item-title>
-                    <v-list-item-subtitle
-                      v-if="userdata"
-                      v-html="userdata.address"
-                    ></v-list-item-subtitle>
-                    <v-list-item-subtitle v-else v-html="userdata.country">
-                    </v-list-item-subtitle>
-                  </v-list-item-content>
-
-                  <v-list-item-icon>
-                    <div class="text-center">
-                      <v-dialog
-                        v-model="uploaddialog"
-                        persistent
-                        max-width="600"
-                      >
-                        <template v-slot:activator="{ on, attrs }">
-                          <v-btn
-                            color="warning"
-                            fab
-                            x-small
-                            dark
-                            v-if="entityThumbNail != null"
-                            @click.stop="deletePatientProfilePic()"
-                          >
-                            <v-icon>mdi-trash-can-outline</v-icon>
-                          </v-btn>
-                          <v-btn
-                            v-else
-                            fab
-                            class="button"
-                            dark
-                            v-bind="attrs"
-                            v-on="on"
-                            x-small
-                          >
-                            <v-icon>mdi-progress-upload</v-icon>
-                          </v-btn>
-                        </template>
-                        <v-card>
-                          <v-card-title class="headline">
-                            Changing {{ userdata.first_name }}&nbsp;{{
-                              userdata.last_name
-                            }}
-                            profile picture
-                          </v-card-title>
-                          <v-card-text>
-                            <v-file-input
-                              label="Profile picture"
-                              accept="image/png, image/jpeg, image/bmp"
-                              prepend-icon="mdi-camera"
-                              show-size
-                              @change="selectFile"
-                            >
-                              <template v-slot:selection="{ text }">
-                                <v-chip small label color="primary">
-                                  {{ text }}
-                                </v-chip>
-                              </template>
-                            </v-file-input>
-                          </v-card-text>
-                          <v-card-actions>
-                            <v-spacer></v-spacer>
-                            <v-btn
-                              color="primary"
-                              @click.stop="uploaddialog = false"
-                              x-small
-                            >
-                              Cancel
-                            </v-btn>
-                            <v-btn x-small shaped @click="uploadPatientImage()">
-                              Save
-                            </v-btn>
-                          </v-card-actions>
-                        </v-card>
-                      </v-dialog>
-                    </div>
-                  </v-list-item-icon>
-                </v-list-item>
-              </v-list>
+            <v-card-title>  
             </v-card-title>
-          </v-img>
+         </v-img>
           <v-card-text>
             <p class="overline">Contacts</p>
             <v-divider></v-divider>
@@ -120,6 +33,7 @@
               <v-address-card :address="address"></v-address-card>
             </v-flex>
           </v-card-text>
+
           <v-card-actions>
             <v-col>
               <v-btn
@@ -128,7 +42,7 @@
                 class="button"
                 v-if="address"
                 dark
-                :to="`/patients/${userdata.id}/contacts/`"
+                :to="`/`"
                 >View contacts</v-btn
               >
               <v-btn
@@ -137,26 +51,16 @@
                 class="button"
                 v-else
                 dark
-                :to="`/patients/${userdata.id}/contacts/add`"
+                :to="``"
               >
-                Add contacts
-              </v-btn>
-              <v-btn
-                small
-                block
-                dark
-                class="button mt-2"
-                v-if="!userdata.hasSelfServiceUserAccount"
-                :to="`/patients/${userdata.id}/selfservice`"
-              >
-                Create self service user
+                Create Investigation Report
               </v-btn>
             </v-col>
           </v-card-actions>
         </v-card>
       </v-col>
-      <v-col xs="12" md="9" sm="12">
-        <v-tabs
+       <v-col xs="12" md="9" sm="12">
+         <v-tabs
           slider-color="blue"
           background-color="primary"
           slider-size="3"
@@ -166,61 +70,52 @@
         >
           <v-tab class="ffont-weight-normal">
             <span
-              ><v-icon small left>mdi-account-question</v-icon>Biography</span
+              ><v-icon small left>mdi-account-question</v-icon>Case Details</span
             >
           </v-tab>
-
-          <v-tab class="font-weight-normal" @click.stop="getPatientServices()">
+          <v-tab class="font-weight-normal" >
             <v-icon small left>mdi-clock-check</v-icon>
-            Consultations
+            Accusers
           </v-tab>
           <v-tab
-            class="font-weight-normal"
-            @click.stop="getPatientInsurances()"
+            class="font-weight-normal" 
           >
             <v-icon small left>mdi-shield-sun</v-icon>
-            Insurances
+            Investigation Report
           </v-tab>
         </v-tabs>
-        <v-tabs-items vertical v-model="tab">
-          <v-tab-item class="default">
-            <tb-biograph :patient="userdata"></tb-biograph>
-          </v-tab-item>
-
-          <v-tab-item class="default">
+           <v-tabs-items vertical v-model="tab">
+              <v-tab-item class="default">
+            <tb-case></tb-case>
+            </v-tab-item>
+            <v-tab-item class="default">
             <div class="">
               <v-btn
                 class="button small ma-2"
                 small
-                v-if="!userdata.isActive"
-                @click.stop="initiateServiceInstance()"
-                ><v-icon small left>mdi-plus</v-icon>New consultation</v-btn
+                ><v-icon small left>mdi-plus</v-icon>New Accuser</v-btn
               >
-              <tb-services :services="services"></tb-services>
+              <tb-accuser></tb-accuser>
             </div>
           </v-tab-item>
-
-          <v-tab-item class="default">
-            <tb-insurance
-              :insurancecards="insurancecards"
-              @update="getPatientInsurances()"
-              @active="active = !active"
-              :title="active ? 'Show inactive' : 'Show active'"
-              :activelist="active"
-            ></tb-insurance>
+    <v-tab-item class="default">
+            <tb-ireport
+            ></tb-ireport>
           </v-tab-item>
-        </v-tabs-items>
-      </v-col>
+           </v-tabs-items>
+       </v-col>
     </v-row>
+
   </v-container>
 </template>
-<script lang="js">
 
-// import BiographTab from "@/components/profile/tabs/biograph"
-// import c_type_divider from "@/components/profile/c_type_divider";
-// import ConsultationsTab from "@/components/profile/tabs/consultations";
-// import AddressCard from "@/components/profile/c_address_card.vue";
-// import InsuranceTab from "@/components/profile/tabs/insurance.vue";
+<script>
+
+import CaseTab from "@/components/profile/tabs/cases.vue"
+import c_type_divider from "@/components/profile/c_type_divider";
+import AccuserTab from "@/components/profile/tabs/accuser.vue";
+import AddressCard from "@/components/profile/c_address_card.vue";
+import IreportTab from "@/components/profile/tabs/iReport.vue";
 
 export default {
   props: {
@@ -230,13 +125,14 @@ export default {
     }
     },
   components: {
-    // 'v-type-divider': c_type_divider,
-    // 'tb-biograph': BiographTab,
-    // 'tb-services': ConsultationsTab,
-    // 'v-address-card': AddressCard,
-    // 'tb-insurance': InsuranceTab
+    'v-type-divider': c_type_divider,
+    'tb-case': CaseTab,
+    'tb-accuser': AccuserTab,
+    'v-address-card': AddressCard,
+    'tb-ireport': IreportTab
   },
-  data() {
+
+    data() {
     return {
       dialog: false,
       uploaddialog: false,
@@ -268,119 +164,14 @@ export default {
         boilerplate: true,
         elevation: 2,
       },
-
-
-
     }
-  },
-  created() {
-    this.address = this.userdata.contactsInformation;
-    this.staff = this.userdata.staff;
-    this.$store.dispatch("fetchAllStaffs");
   },
   computed:{
-    entityThumbNail: function() {
-      return this.userdata.patientPhoto;
-    },
-     staffs: {
-      get() {
-        return this.$store.getters.staffs;
-      }
-    },
-     insurancecards() {
-       var activeinsurances  = this.cards.filter(it => (it.isActive));
-       var inactiveinsurances  = this.cards.filter(it => (!it.isActive));
-      return this.active ? activeinsurances : inactiveinsurances;
-    }
+ 
   },
-  methods: {
-
-    selectFile(file) {
-      this.progress = 0;
-      this.currentFile = file;
-    },
-
-
-    async uploadPatientImage() {
-      const formData = new FormData();
-      formData.append("file", this.currentFile )
-
-      return await this.$api.$patch(`/patients/${this.$route.params.id}/images/`,formData)
-        .then(response => {
-          if (response !== null) {
-            this.uploaddialog = false
-            this.$emit('update-profile');
-          }
-        }).catch(error => {
-          console.log(error);
-
-        });
-
-    },
-    async deletePatientProfilePic() {
-      console.log(this.userdata.patientPhoto.split('/').pop());
-      return await this.$api.$delete(`/patients/${this.$route.params.id}/images/${this.userdata.patientPhoto.split('/').pop()}`)
-        .then(response => {
-          if (response !== null) {
-            this.$emit('update-profile');
-          }
-        }).catch(error => {
-          console.log(error);
-
-        });
-
-    },
-    async initiateServiceInstance(){
-        return await this.$api.$post(`consultations/${this.$route.params.id}`)
-        .then(response => {
-          if (response !== null) {
-            this.getPatientServices()
-            this.$emit('update-profile');
-          }
-        }).catch(error => {
-          console.log(error);
-
-        });
-
-    },
-    async getPatientServices(){
-        return await this.$api.$get(`consultations/patient/${this.$route.params.id}`)
-        .then(response => {
-          if (response !== null) {
-            this.services = response.sort(function(a,b){return b.isActive - a.isActive});
-          }
-        }).catch(error => {
-          console.log(error);
-
-        });
-    },
-    async getPatientInsurances(){
-         return await this.$api.$get(`insurance/cards/patient/${this.$route.params.id}`)
-        .then(response => {
-          if (response !== null) {
-            this.cards = response ;
-          }
-        }).catch(error => {
-          console.log(error);
-
-        });
-    },
-    get_average_rgb(img) {
-    var context = document.createElement('canvas').getContext('2d');
-    if (typeof img == 'string') {
-        var src = img;
-        img = new Image;
-        img.setAttribute('crossOrigin', '');
-        img.src = src;
-    }
-    context.imageSmoothingEnabled = true;
-    context.drawImage(img, 0, 0, 1, 1);
-    return context.getImageData(1, 1, 1, 1).data.slice(0,3);
-}
-
-  }
 }
 </script>
+
 <style>
 .basil {
   background-color: #fffbe6 !important;
@@ -395,3 +186,26 @@ export default {
   width: 100%;
 }
 </style>
+
+
+<!-- <v-tabs-items vertical v-model="tab">
+          <v-tab-item class="default">
+            <tb-case></tb-case>
+          </v-tab-item>
+
+          <v-tab-item class="default">
+            <div class="">
+              <v-btn
+                class="button small ma-2"
+                small
+                ><v-icon small left>mdi-plus</v-icon>New Accuser</v-btn
+              >
+              <tb-accuser></tb-accuser>
+            </div>
+          </v-tab-item>
+
+          <v-tab-item class="default">
+            <tb-ireport
+            ></tb-ireport>
+          </v-tab-item>
+        </v-tabs-items> -->

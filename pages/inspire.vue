@@ -161,10 +161,10 @@ export default {
         boilerplate: true,
         elevation: 2,
       },
-
-
-
     }
+  },
+  computed:{
+ 
   },
 }
 </script>
