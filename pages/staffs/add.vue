@@ -110,8 +110,10 @@ export default {
 
     titleopotions: [
     "ASP",
-    "Sergent", 
-    "SP", 
+    "Sergeant", 
+    "SP", ,
+    "staff Sergeant",
+    "Corprola",
     ],
 
    
