@@ -111,14 +111,11 @@ export default {
     titleopotions: [
     "ASP",
     "Sergeant", 
-    "SP", ,
+    "SP", 
     "staff Sergeant",
     "Corprola",
     ],
 
-   
-
-   
     formHasErrors: false,
     valid: true,
     editedItem: {
@@ -156,7 +153,7 @@ export default {
       this.$refs.form.validate();
       if (state) {
         console.log(this.editedItem)
-        this.$store.dispatch("post_case", this.editedItem);
+        this.$store.dispatch("create_new_user", this.editedItem);
       }
     }
   }
