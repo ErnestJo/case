@@ -8,7 +8,6 @@
 </template>
 <script lang="js">
 export default {
-
   props:{
     height: {
       type: Number,
@@ -29,7 +28,6 @@ export default {
           background: 'transparent',
           toolbar: {
             show: true,
-
           },
           animation:{
             enabled: true,
@@ -44,7 +42,6 @@ export default {
             speed: 350
         }
           },
-
         },
         stroke:{
           width: 0
@@ -58,7 +55,17 @@ export default {
               }
         },
         fill:{
-          colors: ['#44FF07', '#00A756'],
+          colors: ["#20B2AA",
+            "#7FFF00",
+            "#32CD32",
+            "#00FF00",
+            "#228B22",
+            "#008000",
+            "#006400",
+            "#ADFF2F",
+            "#9ACD32",
+            "#00FF7F",
+            "#00FA9A"],
           type: 'solid'
         },
         plotOptions:{
@@ -74,34 +81,5 @@ export default {
                 }
               }
             }
-
           }
         },
-        legend: {
-          position: "bottom",
-          show: false,
-           markers:{
-            fillColors: ['#00897B', '#ED1C23']
-          },
-        },
-
-          title: {
-              text: this.data.title,
-              align: "left",
-              margin: 0,
-              offsetX: 0,
-              offsetY: 0,
-              floating: true,
-              style:{
-                fontSize: '10px',
-                color: '#263238',
-                fontWeight: '12'
-                }
-            },
-
-      },
-
-    };
-  },
-};
-</script>
