@@ -40,7 +40,7 @@
       fixed
       app
       color= "primary"
-      hide-on-scroll
+      
     >
      <v-toolbar-title>
         <v-avatar color="primary lighten-1" size="36">
