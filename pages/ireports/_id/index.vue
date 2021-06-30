@@ -184,7 +184,7 @@ export default {
       this.$refs.form.validate();
       if (state) {
         console.log(this.editedItem)
-        this.$store.dispatch("post_case", this.editedItem);
+        this.$store.dispatch("postir", this.editedItem);
       }
     }
   }
