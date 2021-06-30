@@ -93,7 +93,8 @@
               <v-btn
                 class="button small ma-2"
                 small
-                ><v-icon small left>mdi-plus</v-icon>New Accuser</v-btn
+                 :to="`/accusers/${this.$route.params.id}`"
+                ><v-icon small left>mdi-plus</v-icon>Add Accuser</v-btn
               >
               <tb-accuser></tb-accuser>
             </div>
