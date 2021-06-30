@@ -47,7 +47,7 @@ const state = () => ({
 
     async postir({ commit }, payload) {
       commit("PoSTIR");
-      await this.$api.$post(`api/v1/cases/${payload.id}/investigationReports`, payload)
+      await this.$api.$post(`api/v1/cases/${payload.id}/investigationReports`, payload.data)
         .then(response => {
           console.log(response);
           commit("PoSTIR_SUCCESS", response);
@@ -55,9 +55,7 @@ const state = () => ({
         }).catch(error => {
           commit("PoST_ERROR");
           console.log(error);
-  
         });
-  
     },
 
   }

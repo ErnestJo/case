@@ -255,7 +255,6 @@ export default {
           nextOfkinRelatioinship: "",
           nextOfkinNumber: "",
 
-      
     },
     rules: {
       required: value => !!value || "Required.",
@@ -270,16 +269,33 @@ export default {
 
    methods: {
     close() {},
-    save() {
-      console.log(this.editedItem);
+    // save() {
+    //   console.log(this.editedItem);
+    //   var state = this.$refs.form.validate();
+    //   this.$refs.form.validate();
+    //   var did = this.$route.params.id;
+    //   var payload = {id: did, data: this.editedItem}
+    //   if (state) {
+    //     console.log()
+    //     this.$store.dispatch("createaccuser", payload);
+    //   }
+    // }
+
+    async save() {
       var state = this.$refs.form.validate();
+      console.log(this.editedItem);
       this.$refs.form.validate();
-      var did = this.$route.params.id;
-      var payload = {id: did, data: this.editedItem}
-      if (state) {
-        this.$store.dispatch("createaccuser", payload);
-      }
-    }
+      var irID = this.$route.params.id;
+
+      return await this.$api
+        .$post(`api/v1/cases/${irID}/investigationReports/`, this.editedItem)
+        .then(response => {
+         console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    },
   }
 
 }

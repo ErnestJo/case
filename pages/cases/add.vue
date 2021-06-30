@@ -160,7 +160,7 @@ export default {
       immeadiateActioin: "",
       finalDisposal: "",
       policeOfficerTakingIntialAction: "",
-      nationalilty: "hghjghj",
+      nationalilty: "Mtanzania",
 
     },
     defaultItem: {
@@ -195,9 +195,9 @@ export default {
     ],
 
     immeadiateactioinoptions: [
-    "Give Pf3", 
+     "Give Pf3", 
      "Arresting Warrant", 
-    "No action taken"
+     "No action taken"
     ]
   }),
 
