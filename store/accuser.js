@@ -15,6 +15,18 @@ const state = () => ({
         state.accuser = response.data;
       },
 
+      ["PoST_ACCUSER"](state) {
+        state.showLoader = true;
+      },
+  
+      ["PoST_ACCUSER_SUCCESS"](state,payload) {
+        state.showLoader = true;
+        state.ireports = payload;
+      },
+  
+      ["PoST_ERROR"](state) {
+        state.showLoader = false;
+      },
 
   }
   
@@ -31,6 +43,20 @@ const state = () => ({
         });
     },
     
+    async createaccuser({ commit }, payload) {
+      commit("PoST_ACCUSER");
+      await this.$api.$post(`api/v1/cases/${payload.id}/accusers`, payload)
+        .then(response => {
+          console.log(response);
+          commit("PoST_ACCUSER_SUCCESS", response);
+  
+        }).catch(error => {
+          commit("PoST_ERROR");
+          console.log(error);
+  
+        });
+  
+    },
 
 
   }

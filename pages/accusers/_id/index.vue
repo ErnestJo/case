@@ -109,7 +109,7 @@
                                           v-model="editedItem.policeOfficerIncharge"
                                           :disabled="!editedItem.arrested"
                                           :hint="` ${editedItem.policeOfficerIncharge}`"
-                                          :items="nationaliltyoptions"
+                                          :items="policeOfficerInchargeoption"
                                             label="Select select officer arrested Accuser"
                                              outlined
                                              item-value="value"   
@@ -143,7 +143,7 @@
                                           v-model="editedItem.nextOfkinRelatioinship"
                                           :disabled="!editedItem.arrested"
                                           :hint="` ${editedItem.nextOfkinRelatioinship}`"
-                                          :items="nationaliltyoptions"
+                                          :items="nextOfkinRelatioinshipoption"
                                             label="Relationship with kin"
                                              outlined
                                              item-value="value"   
@@ -164,7 +164,7 @@
                                 ></v-textarea>
                                 </v-col>
 
-                                        <v-col cols="12">
+                                        <!-- <v-col cols="12">
                                         <v-text-field
                                         :disabled="!editedItem.arrested"
                                         v-model="editedItem.properties"
@@ -173,7 +173,7 @@
                                         :rules="[rules.required]"
                                         hint="Complaint Full name E.g Ali mayai  (Mandatory)">
                                         </v-text-field>
-                                    </v-col> 
+                                    </v-col>  -->
 
                             </v-row>
                             </v-col>
@@ -202,9 +202,21 @@ export default {
     ],
     
     nationaliltyoptions: [
-    "Tanzanian", 
+    "Mtanzania", 
     "Kenyani", 
     ],
+
+    nextOfkinRelatioinshipoption: [
+    "Family", 
+    "Frinnd", 
+    ],
+
+
+     policeOfficerInchargeoption: [
+    "Jini", 
+    "fala", 
+    ],
+
 
     genderoptions: ["Male","Female", "Unspecified"],
     title: "Create New Patient",
@@ -228,19 +240,20 @@ export default {
 
     },
     defaultItem: {
-      name: "",
-      phone: "",
-      address: "",
-      age: 0,
-      gender: "",
-      description: "",
-      occupation: "",
-      arrested: false,
-      policeOfficerIncharge: "",
-      nationalilty: "",
-      nextOfkinName: "",
-      nextOfkinRelatioinship: "",
-      nextOfkinNumber: "",
+           name: "",
+          phone: "",
+          address: "",
+          age: 0,
+          gender: "",
+          description: "",
+          occupation: "",
+          arrested: false,
+          properties:"",
+          policeOfficerIncharge: "",
+          nationalilty: "",
+          nextOfkinName: "",
+          nextOfkinRelatioinship: "",
+          nextOfkinNumber: "",
 
       
     },
@@ -264,8 +277,7 @@ export default {
       var did = this.$route.params.id;
       var payload = {id: did, data: this.editedItem}
       if (state) {
-        console.log(this.editedItem)
-        this.$store.dispatch("postir", payload);
+        this.$store.dispatch("createaccuser", payload);
       }
     }
   }
