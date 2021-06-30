@@ -2,7 +2,7 @@ const state = () => ({
     showLoader: Boolean,
     billsperday: [],
     transactionsperday: [],
-  case: [],
+    case: [],
     repo:'',
     transactionsummation: {}
   });
@@ -53,7 +53,6 @@ const state = () => ({
       await this.$api.$post('/api/v1/cases/',payload)
           .then(response => {
             console.log(response);
-            console.log("lukelo");
             commit('sucess')
           
         }).catch(error => {
@@ -66,22 +65,16 @@ const state = () => ({
     
   }
   const getters = {
-    transactionsperday: function (state) {
-      return state.transactionsperday;
-    },
     listcases: function (state) {
       return state.case;
     },
-    kdshjfhds: function ()
-    {
-      return state.repo;
-  },
-    billsummation: function (state) {
-      return state.billsummation;
+    assigned: function (state) {
+      return state.consultations.filter(cases => (cases.assignTo != null));
     },
-    transactionsummation: function (state) {
-      return state.transactionsummation;
-    }
+    unassigned: function (state) {
+      return state.consultations.filter(cases => (cases.assignTo == null));
+    },
+  
   }
   
   export default {
