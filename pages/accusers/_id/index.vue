@@ -269,33 +269,17 @@ export default {
 
    methods: {
     close() {},
-    // save() {
-    //   console.log(this.editedItem);
-    //   var state = this.$refs.form.validate();
-    //   this.$refs.form.validate();
-    //   var did = this.$route.params.id;
-    //   var payload = {id: did, data: this.editedItem}
-    //   if (state) {
-    //     console.log()
-    //     this.$store.dispatch("createaccuser", payload);
-    //   }
-    // }
-
-    async save() {
-      var state = this.$refs.form.validate();
+    save() {
       console.log(this.editedItem);
+      var state = this.$refs.form.validate();
       this.$refs.form.validate();
-      var irID = this.$route.params.id;
-
-      return await this.$api
-        .$post(`api/v1/cases/${irID}/investigationReports/`, this.editedItem)
-        .then(response => {
-         console.log(response);
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    },
+      var did = this.$route.params.id;
+      var payload = {id: did, data: this.editedItem}
+      if (state) {
+        console.log()
+        this.$store.dispatch("createaccuser", payload);
+      }
+    }
   }
 
 }

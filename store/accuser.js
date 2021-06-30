@@ -45,7 +45,7 @@ const state = () => ({
     
     async createaccuser({ commit }, payload) {
       commit("PoST_ACCUSER");
-      await this.$api.$post(`api/v1/cases/${payload.id}/accusers`, payload)
+      await this.$api.$post(`api/v1/cases/${payload.id}/accusers`, payload.data)
         .then(response => {
           console.log(response);
           commit("PoST_ACCUSER_SUCCESS", response);
