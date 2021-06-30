@@ -45,7 +45,7 @@ const actions = {
           const uuId = response.id;
           
           localStorage.setItem('qAccessToken', token);
-          localStorage.setItem('uuId', uuId);
+          // localStorage.setItem('uuId', uuId);
 
           this.$router.push('/');
         }

@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="breadcrumb" v-if="userdata != null">
-      <router-link to="/">{{ $t("label.breadcrumb.dashboard") }}</router-link>
-      <router-link to="/patients">{{
-        $t("label.breadcrumb.patients")
-      }}</router-link>
+      <router-link to="/"></router-link>
+      <router-link to="/patients">
+       
+      </router-link>
       <router-link :to="`/patients/${this.$route.params.id}`" class="active">{{
         username
       }}</router-link>
@@ -46,7 +46,9 @@ export default {
       userdata: null
     };
   },
-
+// created:{
+//   this.$store.dispatch("retrieve_case",);
+// },
   methods: {
     async viewusedata() {
       return await this.$api

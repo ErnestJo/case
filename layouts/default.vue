@@ -40,7 +40,7 @@
       fixed
       app
       color= "primary"
-      hide-on-scroll
+      
     >
      <v-toolbar-title>
         <v-avatar color="primary lighten-1" size="36">
@@ -181,9 +181,35 @@ export default {
 
           {
           icon: 'mdi-chart-bubble',
-          title: 'Createcase',
-          to: '/cases/add'
+          title: 'Cases',
+          to: '/cases'
+        },
+            {
+          icon: 'mdi-calendar-month',
+          title: 'Calendar',
+          to: '/calendar'
+        },
+            {
+          icon: 'mdi-file-outline',
+          title: 'Reports',
+          to: '/reports'
+        },
+            {
+          icon: 'mdi-cog-outline',
+          title: 'Settings',
+          to: '/settings'
+        },
+            {
+          icon: 'mdi-account-tie',
+          title: 'Staffs',
+          to: '/staffs'
+        },
+            {
+          icon: 'mdi-file-replace',
+          title: 'Investigation Reports',
+          to: '/ireports'
         }
+
       ],
 
       miniVariant: false,

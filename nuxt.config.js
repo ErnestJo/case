@@ -9,8 +9,8 @@ export default {
     //},
     
     env: {
-      developmentUrl: process.env.BASE_URL || 'http://34.89.243.136/',
-      releaseUrl: process.env.LIVE_URL || 'http://34.89.243.136/'
+      developmentUrl: process.env.BASE_URL || 'https://pcase-api.herokuapp.com/',
+      releaseUrl: process.env.LIVE_URL || 'https://pcase-api.herokuapp.com/'
     },
   
     head: {
