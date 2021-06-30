@@ -208,8 +208,16 @@ export default {
           icon: 'mdi-file-replace',
           title: 'Investigation Reports',
           to: '/ireports'
+        },
+
+         {
+          icon: 'mdi-file-replace',
+          title: 'Investigation Profile',
+          to: '/investigation'
         }
 
+
+        
       ],
 
       miniVariant: false,

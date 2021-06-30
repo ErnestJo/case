@@ -93,7 +93,7 @@
                                     label="Remark Of Case"
                                     outlined
                                     auto-grow
-                                    v-model="editedItem.description"
+                                    v-model="editedItem.remarks"
                                     hint="Case final Remarks"
                                 ></v-textarea>
                                 </v-col>
@@ -147,11 +147,11 @@ export default {
         court: false,
         remarks:"",
         ifStolenproperty: "",
-     
-
     },
+
+
     defaultItem: {
-    description: "",
+       description: "",
       categoryOfOffence:"",
       offence: "",
       section:"",
@@ -182,9 +182,11 @@ export default {
       console.log(this.editedItem);
       var state = this.$refs.form.validate();
       this.$refs.form.validate();
+      var did = this.$route.params.id;
+      var payload = {id: did, data: this.editedItem}
       if (state) {
         console.log(this.editedItem)
-        this.$store.dispatch("postir", this.editedItem);
+        this.$store.dispatch("postir", payload);
       }
     }
   }

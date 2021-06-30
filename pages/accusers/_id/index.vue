@@ -2,14 +2,14 @@
     <div>
         <div class="breadcrumb">
       <router-link to="/">Dashboard</router-link>
-      <router-link to="/cases">Cases</router-link>
-      <router-link to="/cases/add" class="active"
-        >Create new Case
+      <router-link to="/accusers">Cases</router-link>
+      <router-link to="/accusers/add" class="active"
+        >Add Accuser
         </router-link >
-</div>
+    </div>
     <v-card class="mx-auto default">
          <v-toolbar dark color="primary" flat dense>
-        <v-toolbar-title>Create New Case</v-toolbar-title>
+        <v-toolbar-title>Add accuser</v-toolbar-title>
       </v-toolbar>
         <v-form ref="form" v-model="valid" lazy-validation>
             <v-container>
@@ -36,10 +36,9 @@
                                             label="Gender"
                                             dense
                                             item-value="value"
-                                            outlined
-                                         
+                                            outlined 
+                                            persistent-hint 
                                         >
-                                  
                                         </v-select>
                                     </v-col>
                                     <v-col cols="12">
@@ -78,9 +77,8 @@
                                             label="Occupation"
                                              item-value="value"
                                              outlined
-                                             persistent-hint   
+                                             persistent-hint        
                                         >
-                                     
                                         </v-select>
                                     </v-col>    
                                 </v-row>
@@ -89,21 +87,73 @@
                                 <v-row no-gutters>
                                     <v-col cols="12">
                                         <v-select
-                                        v-model="editedItem.immeadiateAction"
-                                          :hint="` ${editedItem.immeadiateAction}`"
-                                          :items="immeadiateactioinoptions"
-                                            label="Select"
+                                        v-model="editedItem.nationalilty"
+                                          :hint="` ${editedItem.nationalilty}`"
+                                          :items="nationaliltyoptions"
+                                            label="Select nationanality"
                                              outlined
-                                             item-value="value"
-                                           
-                                        >
+                                             item-value="value"   
+                                        > 
+                                        </v-select>
+                                    </v-col> 
+
+                                     <v-col cols="12">
+                                       <v-checkbox
+                                        v-model="editedItem.arrested"
+                                        label="Is Accuser Arrrested"
+                                        ></v-checkbox>
+                                    </v-col> 
+
+                                    <v-col cols="12">
+                                        <v-select
+                                          v-model="editedItem.policeOfficerIncharge"
+                                          :disabled="!editedItem.arrested"
+                                          :hint="` ${editedItem.policeOfficerIncharge}`"
+                                          :items="policeOfficerInchargeoption"
+                                            label="Select select officer arrested Accuser"
+                                             outlined
+                                             item-value="value"   
+                                        > 
+                                        </v-select>
+                                    </v-col> 
+                                       <v-col cols="12">
+                                        <v-text-field
+                                        :disabled="!editedItem.arrested"
+                                        v-model="editedItem.nextOfkinName"
+                                        outlined
+                                        label="Next Of Kin full  name"
+                                        :rules="[rules.required]"
+                                        hint="Complaint Full name E.g Ali mayai  (Mandatory)">
+                                        </v-text-field>
+                                    </v-col> 
+
+                                     <v-col cols="12">
+                                     <v-text-field
+                                        v-model="editedItem.nextOfkinNumber"
+                                        :disabled="!editedItem.arrested"
+                                        outlined
+                                        label="Next of Kin Phone No."
+                                        hint="Patient phone No. e.g +255716xxxxxx (Mandatory)"
+                                        :rules="[rules.required]"
+                                    ></v-text-field>
+                                    </v-col> 
+
+                                    <v-col cols="12">
+                                        <v-select
+                                          v-model="editedItem.nextOfkinRelatioinship"
+                                          :disabled="!editedItem.arrested"
+                                          :hint="` ${editedItem.nextOfkinRelatioinship}`"
+                                          :items="nextOfkinRelatioinshipoption"
+                                            label="Relationship with kin"
+                                             outlined
+                                             item-value="value"   
+                                        > 
                                         </v-select>
                                     </v-col> 
                                 </v-row>
                             </v-col>
-
-                                        <v-col cols="12" sm="6" md="4">
-                            <v-row no-gutters>
+                                <v-col cols="12" sm="6" md="4">
+                                         <v-row no-gutters>
                                 <v-col cols="12">
                                 <v-textarea
                                     label="Descripition of a case"
@@ -113,6 +163,18 @@
                                     hint="Case Description"
                                 ></v-textarea>
                                 </v-col>
+
+                                        <!-- <v-col cols="12">
+                                        <v-text-field
+                                        :disabled="!editedItem.arrested"
+                                        v-model="editedItem.properties"
+                                        outlined
+                                        label="Next Of Kin full  name"
+                                        :rules="[rules.required]"
+                                        hint="Complaint Full name E.g Ali mayai  (Mandatory)">
+                                        </v-text-field>
+                                    </v-col>  -->
+
                             </v-row>
                             </v-col>
                         </v-row>
@@ -121,7 +183,7 @@
                  <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn @click="close" class="button cancel">Cancel</v-btn>
-                <v-btn color="button" @click="save">Add Case</v-btn>
+                <v-btn color="button" @click="save">Add Accuser</v-btn>
             </v-card-actions>
             </v-container>
             </v-form>
@@ -133,17 +195,29 @@
 export default {
     data: () => ({
 
-      occupationoptions: [
+    occupationoptions: [
       "Mfugaji", 
-       "student", 
+      "student", 
       "Business Man"
     ],
     
-    immeadiateactioinoptions: [
-    "Give Pf3", 
-     "Arresting Warrant", 
-    "No action taken"
+    nationaliltyoptions: [
+    "Mtanzania", 
+    "Kenyani", 
     ],
+
+    nextOfkinRelatioinshipoption: [
+    "Family", 
+    "Frinnd", 
+    ],
+
+
+     policeOfficerInchargeoption: [
+    "Jini", 
+    "fala", 
+    ],
+
+
     genderoptions: ["Male","Female", "Unspecified"],
     title: "Create New Patient",
     formHasErrors: false,
@@ -154,29 +228,33 @@ export default {
       address: "",
       age: 0,
       gender: "",
-      arrested: false,
       description: "",
       occupation: "",
-      immeadiateActioin: "",
-      finalDisposal: "",
-      policeOfficerTakingIntialAction: "",
-      nationalilty: "Mtanzania",
+      arrested: false,
+      properties:"",
+      policeOfficerIncharge: "",
+      nationalilty: "",
+      nextOfkinName: "",
+      nextOfkinRelatioinship: "",
+      nextOfkinNumber: "",
 
     },
     defaultItem: {
-      name: "",
-      phone: "",
-      address: "",
-      age: 0,
-      gender: "",
-      arrested: false,
-      description: "",
-      occupation: "",
-      immeadiateActioin: "",
-      finalDisposal: "",
-      policeOfficerTakingIntialAction: "",
-      nationalilty: "",
-      
+           name: "",
+          phone: "",
+          address: "",
+          age: 0,
+          gender: "",
+          description: "",
+          occupation: "",
+          arrested: false,
+          properties:"",
+          policeOfficerIncharge: "",
+          nationalilty: "",
+          nextOfkinName: "",
+          nextOfkinRelatioinship: "",
+          nextOfkinNumber: "",
+
     },
     rules: {
       required: value => !!value || "Required.",
@@ -187,30 +265,19 @@ export default {
       }
     },
     
-
-    occupationoptions: [
-      "Mfugaji", 
-       "student", 
-      "Business Man"
-    ],
-
-    immeadiateactioinoptions: [
-     "Give Pf3", 
-     "Arresting Warrant", 
-     "No action taken"
-    ]
   }),
 
    methods: {
     close() {},
     save() {
- 
       console.log(this.editedItem);
       var state = this.$refs.form.validate();
       this.$refs.form.validate();
+      var did = this.$route.params.id;
+      var payload = {id: did, data: this.editedItem}
       if (state) {
-        console.log(this.editedItem)
-        this.$store.dispatch("post_case", this.editedItem);
+        console.log()
+        this.$store.dispatch("createaccuser", payload);
       }
     }
   }
