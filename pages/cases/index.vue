@@ -41,10 +41,6 @@ export default {
 return this.$store.getters.listcases;
     }
     
-    
-    
-    
-
  },
 
   beforeMount() {
