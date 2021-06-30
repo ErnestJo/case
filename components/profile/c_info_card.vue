@@ -51,7 +51,7 @@
                 class="button"
                 v-else
                 dark
-                :to="``"
+                :to="`/ireports/${this.$route.params.id}`"
               >
                 Create Investigation Report
               </v-btn>
@@ -188,24 +188,3 @@ export default {
 </style>
 
 
-<!-- <v-tabs-items vertical v-model="tab">
-          <v-tab-item class="default">
-            <tb-case></tb-case>
-          </v-tab-item>
-
-          <v-tab-item class="default">
-            <div class="">
-              <v-btn
-                class="button small ma-2"
-                small
-                ><v-icon small left>mdi-plus</v-icon>New Accuser</v-btn
-              >
-              <tb-accuser></tb-accuser>
-            </div>
-          </v-tab-item>
-
-          <v-tab-item class="default">
-            <tb-ireport
-            ></tb-ireport>
-          </v-tab-item>
-        </v-tabs-items> -->
