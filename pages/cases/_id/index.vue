@@ -1,24 +1,22 @@
 <template>
   <div>
-    <div class="breadcrumb" v-if="userdata != null">
+    <div class="breadcrumb" >
       <router-link to="/"></router-link>
-      <router-link to="/patients">
-       
+      <router-link to="/cases">
       </router-link>
-      <router-link :to="`/patients/${this.$route.params.id}`" class="active">{{
-        username
-      }}</router-link>
+      <router-link :to="`/cases/${this.$route.params.id}`" class="active">
+      </router-link>
     </div>
 
     <v-card class="mx-auto default">
-      <div v-if="userdata !== null">
+      <div >
         <card-info
-          :userdata="userdata"
-          v-on:update-profile="reUpdateProfile"
+          :casesdata="casedata"
+          v-on:update-profile="viewdatacase"
         ></card-info>
       </div>
 
-      <div v-else>
+      <div >
         <div height="500" flat>
           <v-layout align-center justify-center column fill-height>
             <v-flex row align-center>
@@ -43,33 +41,33 @@ export default {
   },
   data() {
     return {
-      userdata: null
+      casedata: null
     };
   },
 // created:{
 //   this.$store.dispatch("retrieve_case",);
 // },
   methods: {
-    async viewusedata() {
+    async viewcase() {
       return await this.$api
         .$get(`api/v1/cases/${this.$route.params.id}/`)
         .then(response => {
-          this.userdata = response;
+          this.casedata = response;
         })
         .catch(error => {
           console.log(error);
         });
     },
-    reUpdateProfile: function() {
-      this.viewusedata();
+    viewdatacase: function() {
+      this.viewcase();
     }
   },
   created() {
-    this.viewusedata();
+    this.viewcase();
   },
   computed: {
-    username() {
-      return this.userdata == null ? "" : this.userdata.name;
+    cases() {
+      return this.casedata == null ? "" : this.casedata.data.caseNumber;
     }
   }
 };

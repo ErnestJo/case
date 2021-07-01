@@ -73,7 +73,7 @@
               ><v-icon small left>mdi-account-question</v-icon>Case Details</span
             >
           </v-tab>
-          <v-tab class="font-weight-normal" >
+          <v-tab class="font-weight-normal" @click.stop="getaccusers()" >
             <v-icon small left>mdi-clock-check</v-icon>
             Accusers
           </v-tab>
@@ -93,6 +93,7 @@
               <v-btn
                 class="button small ma-2"
                 small
+                dark
                  :to="`/accusers/${this.$route.params.id}`"
                 ><v-icon small left>mdi-plus</v-icon>Add Accuser</v-btn
               >
@@ -170,6 +171,22 @@ export default {
   computed:{
  
   },
+
+  methods: {
+
+        async getaccusers(){
+        return await this.$api.$get(`api/v1/cases/${this.$route.params.id}/accusers`)
+         .then(response => {
+          if (response !== null) {
+            this.services = response;
+          }
+        }).catch(error => {
+          console.log(error);
+
+        });
+
+    },
+  }
 }
 </script>
 
