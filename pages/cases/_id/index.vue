@@ -54,7 +54,7 @@ export default {
       return await this.$api
         .$get(`api/v1/cases/${this.$route.params.id}/`)
         .then(response => {
-          this.casedata = response;
+          this.casedata = response.data;
           console.log(response +"lukelo" ) ;
         })
         .catch(error => {
