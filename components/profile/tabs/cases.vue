@@ -15,7 +15,7 @@
                 
                 <tr >
                   <td id="id" class="font-weight-black">Case R/B No.:</td>
-                  <td></td>
+                  <td> {{ cases.caseNumber}} </td>
                 </tr>
 
                 <tr>
@@ -35,57 +35,57 @@
                 <tr>
                   <td  id="name" class="font-weight-black">Age:
                   </td>
-                  <td></td>
+                  <td>{{ cases.age }}</td>
                 </tr>
 
                 <tr>
                   <td  id="name" class="font-weight-black">Phone No.
                   </td>
-                  <td></td>
+                  <td> {{ cases.phone }} </td>
                 </tr>
 
                 <tr>
                   <td  id="name" class="font-weight-black">Email Address.
                   </td>
-                  <td></td>
+                  <td> {{ cases.age }}</td>
 
                 </tr>
 
                 <tr>
                   <td  id="name" class="font-weight-black">Address.
                   </td>
-                  <td></td>
+                  <td>{{ cases.address }}</td>
                 </tr>
 
                 <tr>
                   <td  id="name" class="font-weight-black">Nationality:
                   </td>
-                  <td></td>
+                  <td>{{ cases.nationalilty }}</td>
                 </tr>
 
 
                  <tr>
                   <td  id="name" class="font-weight-black">Case Description:
                   </td>
-                  <td></td>
+                  <td>{{ cases.description }}</td>
                 </tr>
 
                 <tr>
                   <td  id="name" class="font-weight-black">Created Date:
                   </td>
-                  <td></td>
+                  <td>{{ cases.createdAt }}</td>
                 </tr>
 
                 <tr>
                   <td  id="name" class="font-weight-black">Police taken Action:
                   </td>
-                  <td></td>
+                  <td>{{ cases.policeOfficeTakingIntialAction }}</td>
                 </tr>
 
                  <tr>
                   <td  id="name" class="font-weight-black">Final Disposal:
                   </td>
-                  <td></td>
+                  <td>{{ cases.finalDisposal }}</td>
                 </tr>
 
               </tbody>
