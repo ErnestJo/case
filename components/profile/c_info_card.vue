@@ -1,13 +1,10 @@
-
-
-
 <template>
   <v-container fill-height fluid grid-list-xl>
     <v-row>
       <v-col xs="12" md="3" sm="12" >
         <v-card flat>
          <v-img
-             :src="filebaseUri + entityThumbNail"
+            
             lazy-src="https://www.attendanceworks.org/wp-content/uploads/2020/09/img-placeholder.png"
             aspect-ratio="1"
             class="grey lighten-2 align-end"
@@ -79,7 +76,7 @@
           </v-tab>
           <v-tab
             class="font-weight-normal" 
-          >
+          @click.stop="getireports()">
             <v-icon small left>mdi-shield-sun</v-icon>
             Investigation Report
           </v-tab>
@@ -100,7 +97,7 @@
               <tb-accuser></tb-accuser>
             </div>
           </v-tab-item>
-    <v-tab-item class="default">
+          <v-tab-item class="default"  >
             <tb-ireport
             ></tb-ireport>
           </v-tab-item>
@@ -145,7 +142,6 @@ export default {
       rating: 2,
       posts: null,
       comments: null,
-      admissions: null,
       followings: null,
       followers: null,
       selectedstaffId: null,
@@ -158,14 +154,9 @@ export default {
       halfIcon: 'mdi-star-half-full',
       address: null,
       staff:null,
-      services: null,
+      accusers: null,
+      ireports: null,
       cards:[],
-      diagnoses: null,
-        attrs: {
-        class: 'mb-6',
-        boilerplate: true,
-        elevation: 2,
-      },
     }
   },
   computed:{
@@ -178,7 +169,20 @@ export default {
         return await this.$api.$get(`api/v1/cases/${this.$route.params.id}/accusers`)
          .then(response => {
           if (response !== null) {
-            this.services = response;
+            this.accusers = response;
+          }
+        }).catch(error => {
+          console.log(error);
+
+        });
+
+    },
+
+      async getireports(){
+        return await this.$api.$get(`api/v1/cases/${this.$route.params.id}/investigationReports`)
+         .then(response => {
+          if (response !== null) {
+            this.ireports = response;
           }
         }).catch(error => {
           console.log(error);

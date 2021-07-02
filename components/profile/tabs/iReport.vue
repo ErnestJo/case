@@ -1,49 +1,61 @@
 <template>
-    <div>
-        <v-progess-circular
-        v-if="!ireport"
-        indeterminate
-        color="grey lighten-5"
-        size="16">
-        </v-progess-circular>
-        <div md12 v-else>
-            <v-data-table
-             dense
-             :headers="headers"
-             :items="insurancecards"
-             :search="search"
-             width="100%"
-             @click:row="handleClick">
-             <template v-slot:top>
-                <v-toolbar flat dark color="primary">
-                    <h2>
-                    <strong>{{ title }}</strong>
-                    </h2>
-                    <v-spacer></v-spacer><v-text-field
-              v-model="search"
-              append-icon="search"
-              label="Search..."
-              outlined
-              single-line
-              hide-details
-              class="mt-2"
-            ></v-text-field>&nbsp;&nbsp;
-                <v-btn class="button mb-1" meduim @click="showActive">{{title}} </v-btn>&nbsp;&nbsp;
-                
-                </v-toolbar>
-             </template>
-            </v-data-table>
-
-        </div>
+  <v-container fluid>
+    <!-- <v-progress-circular
+     
+      indeterminate
+      color="grey"
+      size="24"
+    ></v-progress-circular> -->
+    <div >
+      <v-data-table
+        dense
+        class="default"
+        :headers="headers"
+        :search="search"
+        mobile-breakpoint="100"
+        @click:row="handleClick"
+        @update:page="updatePagination"
+      >
+      </v-data-table>
     </div>
+  </v-container>
 </template>
-
 <script>
+
+import ServiceCard from "@/components/profile/consultation_card";
 export default {
-
-}
+  components: {
+    "service-card": ServiceCard
+  },
+  props: {
+    services: {
+      type: Array,
+      default: null
+    }
+  },
+  data: () => ({
+    search: null,
+    headers: [
+      { text: "Report Number ", value: "name" },
+      { text: "Category of Offence", value: "age" },
+      { text: "Offence", value: "accuserName", sortable: false },
+      { text: "Section", value: "accuserOccupation" },
+    ],
+    body: {
+      options: {
+        page: 1,
+        itemsPerPage: 5,
+        sortBy: ["Report Number"]
+      }
+    }
+  }),
+//   methods: {
+//     handleClick: function(value) {
+//       this.$router.push("/consultations/" + value.id);
+//     },
+//     updatePagination: function(val) {
+//       console.log(val);
+//     }
+//   }
+};
 </script>
-
-<style>
-
-</style>
