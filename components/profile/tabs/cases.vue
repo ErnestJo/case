@@ -23,6 +23,7 @@
                   </td>
                   <td></td>
                 </tr>
+                
 
 
                 <tr>
@@ -112,6 +113,10 @@ export default {
   },
 
 
+  
+  beforeCreate() {
+    this.$store.dispatch("retrieve_case");
+  },
 methods: {
     // submit() {
     //   delete this.patientcp.contactsInformation;

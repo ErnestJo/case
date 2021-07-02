@@ -10,7 +10,7 @@
           <v-col cols="12" sm="12" md="3">
             <v-card-title>
               <h5 v-if="title != null">
-                <v-icon color="blue" left>mdi-circle</v-icon>&nbsp;
+                <v-icon color="blue" left>mdi-account-tie</v-icon>&nbsp;
               </h5>
               <h5 v-else>Staffs</h5></v-card-title
             >
@@ -32,9 +32,9 @@
         </v-row>
          </v-toolbar>
          <v-data-table
-           dense
+              
                 :headers="headers"
-                :items="departmentsstaffs"
+                :item="users"
                 :search="search"
                 width="100%"
                 @click:row="handleClick"
@@ -58,13 +58,14 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
 
     data: () => ({
     search: "",
     updating: false,
     headers: [
-      { text: "User/name", value: "fullName", sortable: false },
+      { text: "User/name", value: "name", sortable: false },
       { text: "Email", value: "email" },
       { text: "Phone", value: "contacts" },
       { text: "Role", value: "role" },
@@ -75,43 +76,28 @@ export default {
       { title: "Edit", icon: "lead-pencil", color: "blue" },
       { title: "Delete", icon: "delete", color: "red" }
     ],
-    title: null
+    users:[],
+    title: "users"
   }),
 
-//    methods: {
-//     async fetchDepartmentStaffs(id, title) {
-//       this.title = title;
-//       this.updating = true;
-//       await this.$api
-//         .$get(`staffs/dep/${id}`)
-//         .then(response => {
-//           if (response != null) {
-//             this.departmentsstaffs = response;
-//             this.updating = false;
-//           }
-//         })
-//         .catch(error => {
-//           this.updating = false;
-//           console.log(error);
-//         });
-//     },
-//     handleClick(item) {
-//       this.$router.push("staffs/" + item.id);
-//     }
-//   },
-//   created() {
-//     this.fetchDepartmentStaffs(1);
-//   },
-//   beforeCreate() {
-//     this.$store.dispatch("retrieve_departments");
-//   },
-//   computed: {
-//     ...mapGetters({
-//       staffs: "staffs",
-//       departments: "departments"
-//     })
-//   }
+   methods: {
+    handleClick(item) {
+      this.$router.push("staffs/" + item.id);
+    }
+  },
+ created(){
+   return  this.$store.dispatch("retrieve_staff");
+  },
 
+  beforeCreate() {
+    this.$store.dispatch("retrieve_staff");
+  },
+
+  computed: {
+    ...mapGetters({
+      users: "users",
+    })
+  }
 }
 </script>
 

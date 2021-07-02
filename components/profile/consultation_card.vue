@@ -1,10 +1,17 @@
 <template>
   <v-card class="mx-auto default "> 
+
+     <!-- <v-progress-circular
+      v-if="services.length == null"
+      indeterminate
+      color="grey lighten-5"
+      size="16"
+    ></v-progress-circular> -->
     <div md12>
       <v-data-table
         dense
         :headers="headers"
-        :items="services"
+        :items="datalist"
         :search="search"
         width="100%"
         @click:row="handleClick"
@@ -13,7 +20,7 @@
         <template v-slot:top>
           <v-toolbar flat color="primary" dark>
             <h2>
-              <strong></strong>
+              <strong>{{ title }}</strong>
             </h2>
             <v-spacer></v-spacer>
             <v-text-field
@@ -27,8 +34,8 @@
           </v-toolbar>
         </template>
 
-         <template v-slot:[`item.isActive`]="{ item }">
-          <v-tooltip right v-if="item.isActive" color="primary">
+         <template v-slot:[`item.assignTo`]="{ item }">
+          <v-tooltip right v-if="item.assignTo" color="primary">
             <template v-slot:activator="{ on, attrs }">
               <v-icon v-bind="attrs" v-on="on" small color="red lighten-2"
                 >mdi-check</v-icon
@@ -51,29 +58,32 @@
 </template>
 
 <script>
+
+
 export default {
+
+  
 
   props: {
   
     title: {
       type: String,
-      default: "Hakijulikani"
+      default: "Services"
     }
   },
    data: () => ({
     search: null,
     headers: [
-      { text: "Patient Name", value: "patientName", sortable: false },
-      { text: "Investigator", value: "assignedTo" },
-      { text: "Is Active?", value: "isActive" },
-      { text: "From", value: "fromDate" },
-      { text: "To", value: "toDate" }
+      { text: "Patient Name", value: "caseNumber", sortable: false },
+      { text: "Investigator", value: "assignTo" },
+      { text: "Status", value: "status" },
+    
     ],
     body: {
       options: {
         page: 1,
-        itemsPerPage: 5,
-        sortBy: ["assignedTo"]
+        itemsPerPage: 10,
+        sortBy: ["assignTo"]
       }
     }
    }),

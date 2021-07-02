@@ -1,13 +1,10 @@
-
-
-
 <template>
   <v-container fill-height fluid grid-list-xl>
     <v-row>
       <v-col xs="12" md="3" sm="12" >
         <v-card flat>
          <v-img
-             :src="filebaseUri + entityThumbNail"
+            
             lazy-src="https://www.attendanceworks.org/wp-content/uploads/2020/09/img-placeholder.png"
             aspect-ratio="1"
             class="grey lighten-2 align-end"
@@ -73,13 +70,13 @@
               ><v-icon small left>mdi-account-question</v-icon>Case Details</span
             >
           </v-tab>
-          <v-tab class="font-weight-normal" >
+          <v-tab class="font-weight-normal" @click.stop="getaccusers()" >
             <v-icon small left>mdi-clock-check</v-icon>
             Accusers
           </v-tab>
           <v-tab
             class="font-weight-normal" 
-          >
+          @click.stop="getireports()">
             <v-icon small left>mdi-shield-sun</v-icon>
             Investigation Report
           </v-tab>
@@ -93,13 +90,14 @@
               <v-btn
                 class="button small ma-2"
                 small
+                dark
                  :to="`/accusers/${this.$route.params.id}`"
                 ><v-icon small left>mdi-plus</v-icon>Add Accuser</v-btn
               >
               <tb-accuser></tb-accuser>
             </div>
           </v-tab-item>
-    <v-tab-item class="default">
+          <v-tab-item class="default"  >
             <tb-ireport
             ></tb-ireport>
           </v-tab-item>
@@ -144,7 +142,6 @@ export default {
       rating: 2,
       posts: null,
       comments: null,
-      admissions: null,
       followings: null,
       followers: null,
       selectedstaffId: null,
@@ -157,19 +154,43 @@ export default {
       halfIcon: 'mdi-star-half-full',
       address: null,
       staff:null,
-      services: null,
+      accusers: null,
+      ireports: null,
       cards:[],
-      diagnoses: null,
-        attrs: {
-        class: 'mb-6',
-        boilerplate: true,
-        elevation: 2,
-      },
     }
   },
   computed:{
  
   },
+
+  methods: {
+
+        async getaccusers(){
+        return await this.$api.$get(`api/v1/cases/${this.$route.params.id}/accusers`)
+         .then(response => {
+          if (response !== null) {
+            this.accusers = response;
+          }
+        }).catch(error => {
+          console.log(error);
+
+        });
+
+    },
+
+      async getireports(){
+        return await this.$api.$get(`api/v1/cases/${this.$route.params.id}/investigationReports`)
+         .then(response => {
+          if (response !== null) {
+            this.ireports = response;
+          }
+        }).catch(error => {
+          console.log(error);
+
+        });
+
+    },
+  }
 }
 </script>
 

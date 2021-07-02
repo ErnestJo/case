@@ -37,14 +37,11 @@ export default {
         formTitle() {
       return this.editedIndex === -1 ? "New Item" : "Edit Item"; 
         },
+        
     cases (){
 return this.$store.getters.listcases;
     }
     
-    
-    
-    
-
  },
 
   beforeMount() {

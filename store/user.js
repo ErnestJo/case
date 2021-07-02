@@ -13,7 +13,7 @@ const state = () => ({
     
     ["USER_SUCCESS"](state,response) {
         state.showLoader = true;
-        state.accuser = response.data;
+        state.users = response.data;
     },
     
     ["CREATE_NEW_USER"](state) {
@@ -129,7 +129,7 @@ const state = () => ({
 
   }
   const getters = {
-    listusers: function (state) {
+    users: function (state) {
       return state.users;
     },
   }
