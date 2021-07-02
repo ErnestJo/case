@@ -98,8 +98,8 @@
             </div>
           </v-tab-item>
           <v-tab-item class="default"  >
-            <tb-ireport
-            ></tb-ireport>
+            <tb-ireport :repo="ireports"> 
+            </tb-ireport>
           </v-tab-item>
            </v-tabs-items>
        </v-col>
@@ -156,6 +156,7 @@ export default {
       address: null,
       staff:null,
       accuser: null,
+      ireports: null,
 
       cards:[],
     }
@@ -184,7 +185,8 @@ export default {
         return await this.$api.$get(`api/v1/cases/${this.$route.params.id}/investigationReports`)
          .then(response => {
           if (response !== null) {
-            this.ireports = response;
+            this.ireports = response.data;
+            console.log(response)
           }
         }).catch(error => {
           console.log(error);
