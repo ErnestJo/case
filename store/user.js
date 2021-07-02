@@ -129,7 +129,8 @@ const state = () => ({
 
   }
   const getters = {
-    users: function (state) {
+    Users: function (state) {
+      
       return state.users;
     },
   }
