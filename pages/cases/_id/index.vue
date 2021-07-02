@@ -20,11 +20,6 @@
         <div height="500" flat>
           <v-layout align-center justify-center column fill-height>
             <v-flex row align-center>
-              <v-progress-circular
-                indeterminate
-                :size="50"
-                color="primary"
-              ></v-progress-circular>
             </v-flex>
           </v-layout>
         </div>
@@ -55,7 +50,7 @@ export default {
         .$get(`api/v1/cases/${this.$route.params.id}/`)
         .then(response => {
           this.casedata = response.data;
-          console.log(response +"lukelo" ) ;
+          console.log(response) ;
         })
         .catch(error => {
           console.log(error);

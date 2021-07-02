@@ -12,7 +12,6 @@
       :sort-desc="sortDesc"
       mobile-breakpoint="100"
       @click:row="handleClick"
-      
       @update:page="updatePagination"
         >
         <template v-slot:top>
@@ -179,7 +178,7 @@ export default {
     },
 
     handleClick: function(value) {
-    //   this.$router.push("/patients/" + value.id);
+    //   this.$router.push("datalist/patients/" + value.id);
     },
     initialize() {},
     updatePagination: function(val) {

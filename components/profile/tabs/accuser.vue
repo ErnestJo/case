@@ -1,27 +1,28 @@
 <template>
   <v-container fluid>
-    <!-- <v-progress-circular
-     
+    <v-progress-circular
+      v-if="services == null"
       indeterminate
       color="grey"
       size="24"
-    ></v-progress-circular> -->
-    <div >
+    ></v-progress-circular>
+    <div v-else>
       <v-data-table
         dense
         class="default"
         :headers="headers"
+        :items="services"
         :search="search"
         mobile-breakpoint="100"
         @click:row="handleClick"
         @update:page="updatePagination"
       >
+        
       </v-data-table>
     </div>
   </v-container>
 </template>
 <script>
-
 import ServiceCard from "@/components/profile/consultation_card";
 export default {
   components: {
@@ -36,27 +37,29 @@ export default {
   data: () => ({
     search: null,
     headers: [
-      { text: "Accuser Name", value: "name" },
-      { text: "Accuser Age", value: "age" },
-      { text: "Accuser Phone", value: "accuserName", sortable: false },
-      { text: "Accuser Occupation", value: "accuserOccupation" },
-      { text: "Accuser Nationality ", value: "accuserNationlity" },
+      { text: "Name Of Accusser", value: "name" },
+      { text: "Phone ", value: "phone" },
+      { text: "Gender ", value: "gender" },
+      { text: "Occupation", value: "occupation", sortable: false },
+      { text: " Is arrested", value: "arrested" },
+      { text: "Officer in charge", value: "policeOfficerIncharge" },
+      
     ],
     body: {
       options: {
         page: 1,
         itemsPerPage: 5,
-        sortBy: ["accuserName"]
+        sortBy: ["patientName"]
       }
     }
   }),
-//   methods: {
-//     handleClick: function(value) {
-//       this.$router.push("/consultations/" + value.id);
-//     },
-//     updatePagination: function(val) {
-//       console.log(val);
-//     }
-//   }
+  methods: {
+    handleClick: function(value) {
+      this.$router.push("api/v1/accusers/" + value.id);
+    },
+    updatePagination: function(val) {
+      console.log(val);
+    }
+  }
 };
 </script>

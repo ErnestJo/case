@@ -94,7 +94,7 @@
                  :to="`/accusers/${this.$route.params.id}`"
                 ><v-icon small left>mdi-plus</v-icon>Add Accuser</v-btn
               >
-              <tb-accuser></tb-accuser>
+              <tb-accuser :services="accuser"></tb-accuser>
             </div>
           </v-tab-item>
           <v-tab-item class="default"  >
@@ -121,7 +121,8 @@ export default {
     casesdata:{
       type: Object,
       default: null
-    }
+    },
+  
     },
   components: {
     'v-type-divider': c_type_divider,
@@ -154,8 +155,8 @@ export default {
       halfIcon: 'mdi-star-half-full',
       address: null,
       staff:null,
-      accusers: null,
-      ireports: null,
+      accuser: null,
+
       cards:[],
     }
   },
@@ -168,8 +169,9 @@ export default {
         async getaccusers(){
         return await this.$api.$get(`api/v1/cases/${this.$route.params.id}/accusers`)
          .then(response => {
-          if (response !== null) {
-            this.accusers = response;
+          if (response != null) {
+            this.accuser = response.data;
+            console.log(response)
           }
         }).catch(error => {
           console.log(error);
