@@ -26,11 +26,11 @@
           ></v-text-field>
 
           <v-spacer></v-spacer>
-          <div >
-             <v-btn medium  class="button" to="/iReport/add"
+          <!-- <div >
+             <v-btn medium  class="button" to="/ireports/add"
               ><v-icon>mdi-plus</v-icon
               > Create Ir</v-btn>
-          </div>
+          </div> -->
         </v-toolbar>
         </template>
        <template v-slot:[`item.gender`]="{ item }">
@@ -40,7 +40,7 @@
               >mdi-gender-female
             </v-icon>
           </template>
-          <span>{{ $t("label.tooltip.genderfemale") }}</span>
+          <span></span>
         </v-tooltip>
         <v-tooltip top v-if="item.gender == 'Male'" color="primary">
           <template v-slot:activator="{ on, attrs }">
@@ -48,7 +48,7 @@
               >mdi-gender-male
             </v-icon>
           </template>
-          <span>{{ $t("label.tooltip.gendermale") }}</span>
+          <span></span>
         </v-tooltip>
         <v-tooltip top v-if="item.gender == 'Unspecified'" color="cyan">
           <template v-slot:activator="{ on, attrs }">
@@ -56,7 +56,7 @@
               >mdi-gender-male-female
             </v-icon>
           </template>
-          <span>{{ $t("label.tooltip.genderother") }}</span>
+          <span></span>
         </v-tooltip>
       </template>
           <template v-slot: [`item.status`] = "{ item }">

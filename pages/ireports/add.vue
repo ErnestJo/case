@@ -9,7 +9,7 @@
     </div>
     <v-card class="mx-auto default">
          <v-toolbar dark color="primary" flat dense>
-        <v-toolbar-title>Add accuser</v-toolbar-title>
+        <v-toolbar-title>Add Ireports</v-toolbar-title>
       </v-toolbar>
         <v-form ref="form" v-model="valid" lazy-validation>
             <v-container>

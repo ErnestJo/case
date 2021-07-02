@@ -69,11 +69,11 @@ export default {
 
       // admins: [
       //   [
-      //     "label.titles.usersmanagement",
+      //     "hhhh",
       //     "mdi-account-multiples-outline",
       //     "/settings/users"
       //   ],
-      //   ["label.titles.settings", "mdi-cog-outline", "/settings/admin"]
+      //   ["settings", "mdi-cog-outline", "/settings/admin"]
       // ],
       // cruds: [
       //   ["Create", "mdi-plus-outline"],
@@ -83,24 +83,24 @@ export default {
       // ],
       // settings: [
       //   {
-      //     title: "label.titles.roleandpermissions",
+      //     title: "roleandpermissions",
       //     icon: "mdi-shield-lock-outline",
       //     menus: [
       //       {
-      //         title: "label.titles.administrations",
+      //         title: "administrations",
       //         submenus: [
       //           {
-      //             title: "label.titles.usersmanagement",
+      //             title: "usersmanagement",
       //             to: "/settings",
       //             icon: "mdi-account-settings"
       //           },
       //           {
-      //             title: "label.titles.selfusersmanagement",
+      //             title: "selfusersmanagement",
       //             to: "/settings/selfservices",
       //             icon: "mdi-account-group"
       //           },
       //           {
-      //             title: "label.menu.rolesandprivileges",
+      //             title: "rolesandprivileges",
       //             icon: "mdi-cog-outline",
       //             to: "/settings/roles"
       //           }
@@ -109,24 +109,24 @@ export default {
       //     ]
       //   },
       //   {
-      //     title: "label.titles.system",
+      //     title: "system",
       //     icon: "mdi-cog",
       //     menus: [
       //       {
-      //         title: "label.titles.configurations",
+      //         title: "configurations",
       //         submenus: [
       //           {
-      //             title: "label.titles.smsconfigurations",
+      //             title: "smsconfigurations",
       //             to: "/settings/sms",
       //             icon: "mdi-message-cog-outline"
       //           },
       //           {
-      //             title: "label.titles.emailconfigurations",
+      //             title: "emailconfigurations",
       //             to: "/settings/config/email",
       //             icon: "mdi-mailbox-outline"
       //           },
       //           {
-      //             title: "label.titles.systemcolors",
+      //             title: "systemcolors",
       //             to: "/settings/colors",
       //             icon: "mdi-format-color-fill"
       //           }

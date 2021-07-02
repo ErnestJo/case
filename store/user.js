@@ -130,7 +130,6 @@ const state = () => ({
   }
   const getters = {
     Users: function (state) {
-      
       return state.users;
     },
   }

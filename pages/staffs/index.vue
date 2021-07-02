@@ -12,11 +12,6 @@
     class="elevation-1"
     @click:row="handleClick"
   ></v-data-table>
-
-
-
-
-
       
     </v-card>
     </div>
@@ -37,26 +32,24 @@ export default {
       { text: "Active ?", value: "isActive", sortable: true },
       { text: "Available ?", value: "isAvailable", sortable: true }
     ],
-  
-    
+
     title: "users"
   }),
 
    methods: {
-    handleClick(i) {
-      this.$router.push("staffs/" + i.id);
+    handleClick(item) {
+      this.$router.push("staffs/" + item.id);
     }
   },
  created(){
     this.$store.dispatch("retrieve_staff");
   },
 
-  
 
   computed: {
   
      staff() {
-       console.log("lukelo");
+       console.log("");
        console.log(this.$store.getters.Users);
       return this.$store.getters.Users;
     
