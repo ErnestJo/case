@@ -29,7 +29,7 @@
                 <tr>
                   <td  id="name" class="font-weight-black">Gender:
                   </td>
-                  <td></td>
+                  <td>{{cases.gender}}</td>
                 </tr>
 
                 <tr>
