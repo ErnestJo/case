@@ -41,7 +41,9 @@ export default {
   },
   data() {
     return {
-      casedata: null
+      users:[],
+      casedata: {}
+      
     };
   },
 // created:{
@@ -53,6 +55,7 @@ export default {
         .$get(`api/v1/cases/${this.$route.params.id}/`)
         .then(response => {
           this.casedata = response;
+          console.log(response +"lukelo" ) ;
         })
         .catch(error => {
           console.log(error);

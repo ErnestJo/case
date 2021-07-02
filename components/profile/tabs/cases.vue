@@ -21,7 +21,7 @@
                 <tr>
                   <td  id="name" class="font-weight-black">Full Name:
                   </td>
-                  <td></td>
+                  <td>{{cases.name}}</td>
                 </tr>
                 
 
@@ -98,11 +98,13 @@
 </template>
 <script>
 export default {
-  props: {
-    Case: {
+ 
+    props: {
+    cases:{
       type: Object,
       default: null
-    }
+    
+    },
   },
   data: function() {
     return {

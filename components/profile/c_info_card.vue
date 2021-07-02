@@ -83,7 +83,7 @@
         </v-tabs>
            <v-tabs-items vertical v-model="tab">
               <v-tab-item class="default">
-            <tb-case></tb-case>
+            <tb-case :cases ="casesdata"></tb-case>
             </v-tab-item>
             <v-tab-item class="default">
             <div class="">
@@ -118,7 +118,7 @@ import IreportTab from "@/components/profile/tabs/iReport.vue";
 
 export default {
   props: {
-    userdata:{
+    casesdata:{
       type: Object,
       default: null
     }
