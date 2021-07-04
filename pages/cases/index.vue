@@ -30,6 +30,7 @@ export default {
         search: "",
         all_pagetitle: "All Cases"
     }),
+    
  created(){
     this.$store.dispatch("retrieve_case");
   },
@@ -39,7 +40,7 @@ export default {
         },
         
     cases (){
-return this.$store.getters.listcases;
+    return this.$store.getters.listcases;
     }
     
  },

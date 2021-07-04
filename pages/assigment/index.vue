@@ -1,8 +1,8 @@
 <template>
     <div>
         <div class="breadcrumb ">
-      <router-link to="/">hdhd</router-link>
-      <router-link to="/oppointemnts" class="active">hshshsh</router-link>
+      <router-link to="/">Dashboard</router-link>
+      <router-link to="/assigment" class="active">Assignment </router-link>
         </div>
 
         <v-card>
@@ -16,33 +16,35 @@
                 :show-arrows="$vuetify.breakpoint.mobile"
                 dark> 
 
-                 <v-tab>
+                 <v-tab @click.stop="getunassigned()">
                  <v-badge
                      color="green"
+                        :content="unassigned.length"
+            :value="unassigned.length"
 
                      > 
                      Usassigned Cases     
           </v-badge>
         </v-tab>
-        <v-tab ripple>
+        <v-tab ripple @click.stop="getassigned()">
             <v-badge
             color="green"
-          
             class="lowercase"
+            :content="assigned.length"
+            :value="assigned.length"
             > Assigned Cases</v-badge
           ></v-tab>   
 
                 <v-tab-item>
                     <servicescard-component
-      :cases="unassigned"
+                :services="unassigned"
                 title="Unassigned Cases"
           ></servicescard-component>
               </v-tab-item> 
 
               <v-tab-item>
-                   <servicescard-component
-            
-            :cases="assigned"
+             <servicescard-component
+            :services="assigned"
             title="Assigned Cases"
           ></servicescard-component>
               </v-tab-item>   
@@ -58,29 +60,47 @@ export default {
     "servicescard-component": ServiceCard
   },
 
-  computed: {
-    // formTitle() {
-    //   return this.editedIndex === -1 ? "New Item" : "Edit Item";
-    // }
-    },
-
-     created(){
-    this.$store.dispatch("retrieve_case");
-  },
-
-data: () => ({
+  data: () => ({
     dialog: false,
     search: "",
     tab: null,
-    un_assigned_pagetitle: "Un-Assigned Cases",
-    assigned_pagetitle: "Assigned Cases",
-    all_pagetitle: "All Cases"
+    all_pagetitle: "All Cases",
+    assigned: [],
+    unassigned: [],
   }),
 
-    //     ...mapGetters({
-    //       datalist: "cases",
-    //  })
 
+methods: {
+        async getassigned(){
+        return await this.$api.$get(`api/v1/cases?isAssigned=true`)
+         .then(response => {
+          if (response !== null) {
+            this.assigned = response.data;
+            console.log(response)
+          }
+        }).catch(error => {
+          console.log(error);
+
+        });
+
+    },
+
+      async getunassigned(){
+        return await this.$api.$get(`api/v1/cases?isAssigned=false`)
+         .then(response => {
+          if (response !== null) {
+            this.unassigned = response.data;
+            console.log(response)
+          }
+        }).catch(error => {
+          console.log(error);
+        });
+    },
+},
+
+  //    created(){
+  //   this.$store.dispatch("retrieve_case");
+  // },
 }
 </script>
 

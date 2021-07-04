@@ -157,7 +157,6 @@ export default {
       staff:null,
       accuser: null,
       ireports: null,
-
       cards:[],
     }
   },
@@ -190,9 +189,7 @@ export default {
           }
         }).catch(error => {
           console.log(error);
-
-        });
-
+        });getaccusers
     },
   }
 }
