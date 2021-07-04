@@ -81,7 +81,7 @@ const state = () => ({
 
     async retrieve_assigned({ commit }) {
       commit("ASSIGNED");
-      await this.$api.$get('api/v1/cases?isAssigned=false')
+      await this.$api.$get('api/v1/cases?isAssigned=true')
           .then(response => {
               console.log(response.data);
           commit("ASSIGNED_SUCCESS", response);
