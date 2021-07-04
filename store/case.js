@@ -1,10 +1,10 @@
 const state = () => ({
-    showLoader: Boolean,
-    billsperday: [],
-    transactionsperday: [],
+  showLoader: Boolean,
+    cas:{},
     case: [],
-    repo:'',
-    transactionsummation: {}
+    assigned: [],
+    unassigned: [],
+  
   });
   
   const mutations = {
@@ -20,21 +20,41 @@ const state = () => ({
       },    
     ["sucess"](state) {
       state.repo = "sucessed";
-
-
 },
 
     ["error"](state) {
       state.repo = "failed";
-    }
+    },
 
+
+    /** Fetch cases assiged  */
+
+    ["ASSIGNED"](state) {
+      state.showLoader = true;
+    },
+
+    ["ASSIGNED_SUCCESS"](state) {
+      state.showLoader = true;
+      state.assigned = response.data;
+    },
+
+    ["UNASSIGNED"](state) {
+      state.showLoader = true;
+      state.unassigned = response.data;
+    },
+    ["UNASSIGNED_SUCCESS"](state) {
+      state.showLoader = true;
+    },
+    ["ASSIGNED"](state) {
+      state.showLoader = true;
+    },
   }
   
   const actions = {
   
     async retrieve_case({ commit }) {
       commit("CASE");
-      await this.$api.$get('/api/v1/cases/')
+      await this.$api.$get('api/v1/cases/')
           .then(response => {
               console.log(response.data);
           commit("CASE_SUCCESS", response);
@@ -50,29 +70,57 @@ const state = () => ({
       commit("CASE");
 
       console.log("sadas");
-      await this.$api.$post('/api/v1/cases/',payload)
+      await this.$api.$post('api/v1/cases/',payload)
           .then(response => {
             console.log(response);
             commit('sucess')
-          
+        }).catch(error => {  
+          commit('error')
+          console.log(error);
+        });
+    },
+
+    async retrieve_assigned({ commit }) {
+      commit("ASSIGNED");
+      await this.$api.$get('api/v1/cases?isAssigned=true')
+          .then(response => {
+              console.log(response.data);
+          commit("ASSIGNED_SUCCESS", response);
         }).catch(error => {
          
-          commit('error')
           console.log(error);
   
         });
     },
     
+
+    async retrieve_unassigned({ commit }) {
+      commit("UNASSIGNED");
+      await this.$api.$get('api/v1/cases?isAssigned=false')
+          .then(response => {
+              console.log(response.data);
+          commit("UNASSIGNED_SUCCESS", response);
+        }).catch(error => {
+          console.log(error);
+        });
+    },
   }
+
   const getters = {
     listcases: function (state) {
       return state.case;
     },
-    assigned: function (state) {
-      return state.consultations.filter(cases => (cases.assignTo != null));
+
+    cas: (state) => (id) => {
+      return state.case.find(cas => cas.id == id)
     },
-    unassigned: function (state) {
-      return state.consultations.filter(cases => (cases.assignTo == null));
+
+    assignedlist: function (state) {
+      return state.assigned;
+    },
+
+    unassignedlist: function (state) {
+      return state.unassigned;
     },
   
   }
