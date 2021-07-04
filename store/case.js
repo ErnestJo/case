@@ -20,7 +20,7 @@ const state = () => ({
       },    
     ["sucess"](state) {
       state.repo = "sucessed";
-},
+  },
 
     ["error"](state) {
       state.repo = "failed";
@@ -33,21 +33,20 @@ const state = () => ({
       state.showLoader = true;
     },
 
-    ["ASSIGNED_SUCCESS"](state) {
+    ["ASSIGNED_SUCCESS"](state, response) {
       state.showLoader = true;
       state.assigned = response.data;
     },
 
     ["UNASSIGNED"](state) {
       state.showLoader = true;
+      
+    },
+    ["UNASSIGNED_SUCCESS"](state, response) {
+      state.showLoader = true;
       state.unassigned = response.data;
     },
-    ["UNASSIGNED_SUCCESS"](state) {
-      state.showLoader = true;
-    },
-    ["ASSIGNED"](state) {
-      state.showLoader = true;
-    },
+    
   }
   
   const actions = {
@@ -82,24 +81,22 @@ const state = () => ({
 
     async retrieve_assigned({ commit }) {
       commit("ASSIGNED");
-      await this.$api.$get('api/v1/cases?isAssigned=true')
+      await this.$api.$get('api/v1/cases?isAssigned=false')
           .then(response => {
               console.log(response.data);
           commit("ASSIGNED_SUCCESS", response);
         }).catch(error => {
-         
-          console.log(error);
-  
+          console.log(error)
         });
     },
     
 
     async retrieve_unassigned({ commit }) {
-      commit("UNASSIGNED");
+      commit("CASE");
       await this.$api.$get('api/v1/cases?isAssigned=false')
           .then(response => {
               console.log(response.data);
-          commit("UNASSIGNED_SUCCESS", response);
+          commit("CASE_SUCCESS", response);
         }).catch(error => {
           console.log(error);
         });
@@ -116,11 +113,11 @@ const state = () => ({
     },
 
     assignedlist: function (state) {
-      return state.assigned;
+      return state.case;
     },
 
     unassignedlist: function (state) {
-      return state.unassigned;
+      return state.case;
     },
   
   }
