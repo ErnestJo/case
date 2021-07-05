@@ -1,7 +1,7 @@
 <template>
   <v-container class="ma-2 pa-0 px-2" fluid>
     <div >
-      <v-row justify="start" align="start" class="mt-2">
+      <v-row justify="start" align="start" class="mt-4">
         <template>
           <!-- <v-progress-circular
           
@@ -62,9 +62,9 @@
       </v-row>
       <v-row justify="start" align="start" class="mt-3">
         <v-col cols="12" sm="6" class="ma-0 pa-0 mt-2 ">
-          <v-card class="mr-1 ml-1 mx-auto default " height="400" dense>
+          <!-- <v-card class="mr-1 ml-1 mx-auto default " height="400" dense>
             <line-chart-gradient :data="service_trends"></line-chart-gradient>
-          </v-card>
+          </v-card> -->
         </v-col>
         <v-col cols="12" sm="6" v-if="bsc_size > 0" class="ma-0 pa-0 mt-2">
           <v-card class="mr-1 ml-1 mx-auto default " height="400" dense>
@@ -293,7 +293,7 @@ export default {
         return [
           
           {
-            title: "Total consultations",
+            title: "Total Case",
             subtitle: "Total consultations",
             measure: "p/d",
             value: 20,
@@ -301,7 +301,7 @@ export default {
             color: "red"
           },
           {
-            title: "Active consultations",
+            title: "Active Case",
             subtitle: "Active consultations",
             measure: "p/d",
             value: 21,
@@ -309,7 +309,7 @@ export default {
             color: "red"
           },
           {
-            title: "Inactive consultations",
+            title: "Inactive Case",
             subtitle: "Inactive consultations",
             measure: "p/d",
             value: 25,
@@ -317,7 +317,7 @@ export default {
             color: "red"
           },
           {
-            title: "Assigned consultations",
+            title: "Assigned Case",
             subtitle: "Assigned consultations",
             measure: "p/d",
             value: 22,
@@ -325,35 +325,35 @@ export default {
             color: "red"
           },
           {
-            title: "Unassigned consultations",
+            title: "Unassigned Case",
             subtitle: "Unassigned consultations",
             value: 12,
             icon: "mdi-order-bool-ascending",
             color: "teal"
           },
           {
-            title: " OPD",
+            title: " Stations",
             subtitle: "OPD  consultations",
             value: 10,
             measure: "p/d",
             icon: "mdi-account-group-outline",
             color: "lime"
           },
-          {
-            title: "IPD ",
-            subtitle: "IPD  consultations",
-            measure: "p/d",
-            value: 89,
-            icon: "mdi-bed",
-            color: "green"
-          },
-          {
-            title: "Physicians",
-            subtitle: "No. of Physicians",
-            value: 90,
-            icon: "mdi-doctor",
-            color: "light-blue"
-          }
+          // {
+          //   title: "IPD ",
+          //   subtitle: "IPD  consultations",
+          //   measure: "p/d",
+          //   value: 89,
+          //   icon: "mdi-bed",
+          //   color: "green"
+          // },
+          // {
+          //   title: "Physicians",
+          //   subtitle: "No. of Physicians",
+          //   value: 90,
+          //   icon: "mdi-doctor",
+          //   color: "light-blue"
+          // }
           
         ];
       }
@@ -362,23 +362,23 @@ export default {
       get() {
         return [
           {
-            title: "Total beds",
+            title: "Total Cells",
             subtitle: "Total beds",
             value: 10,
             icon: "mdi-bed-single",
             color: "brown"
           },
           {
-            title: "Occupied beds",
+            title: "Occupied Cells",
             subtitle: "Occupied beds",
-            value: 12,
+            value: 2,
             icon: "mdi-bunk-bed",
             color: "grey"
           },
           {
-            title: "Un-Occupied beds",
+            title: "Un-Occupied Cells",
             subtitle: "Un-Occupied beds",
-            value: 15,
+            value: 10,
             measure: "pt/min",
             icon: "mdi-bed-empty",
             color: "cyan"
@@ -449,8 +449,8 @@ export default {
         var data = {
           series: [
             {
-              name: "Number of consultations",
-              data: datas
+              // name: "Number of Case",
+              // data: datas
             }
           ],
           categories: categories

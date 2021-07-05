@@ -36,7 +36,7 @@
                       <v-col cols="12" sm="12" md="4">
                         <v-checkbox
                           v-model="editedItem.isAssigned"
-                          label="Any thing was Stolen?"
+                          label="check to assign "
                           ></v-checkbox>
                       </v-col>
                       <v-col cols="12" sm="12" md="8">
