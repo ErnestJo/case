@@ -94,8 +94,7 @@
                                           :items="immeadiateactioinoptions"
                                             label="Select"
                                              outlined
-                                             item-value="value"
-                                           
+                                             item-value="value"  
                                         >
                                         </v-select>
                                     </v-col> 
