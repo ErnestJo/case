@@ -79,6 +79,19 @@ const state = () => ({
         });
     },
 
+    async updateassignee({ commit }, payload) {
+      commit("CASE");
+      await this.$api.$put(`api/v1/cases/${payload.id}/`, payload.data)
+        .then(response => {
+          console.log(response);
+          commit("sucess", response);
+  
+        }).catch(error => {
+          commit("error");
+          console.log(error);
+        });
+    },
+
     async retrieve_assigned({ commit }) {
       commit("ASSIGNED");
       await this.$api.$get('api/v1/cases?isAssigned=true')
