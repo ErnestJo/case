@@ -42,10 +42,7 @@
 
 
 export default {
-
-
   props: {
-  
     services: {
       type: Array,
     },
