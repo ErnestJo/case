@@ -60,7 +60,7 @@ export default {
 
      handle_row_click(i) {
        console.log(i._id);
-      this.$router.push("api/v1/accusers/" + i._id);
+      this.$router.push("/accusers/" + i._id);
   },
     updatePagination: function(val) {
       console.log(val);
