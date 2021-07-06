@@ -37,13 +37,14 @@ export default {
   data() {
     return {
       users:[],
-      casedata: {}
-      
+      casedata: {}  
     };
   },
+
  created(){
     this.$store.dispatch("retrieve_accuser");
   },
+
   methods: {
     async viewcase() {
       return await this.$api

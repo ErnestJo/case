@@ -24,8 +24,6 @@
                   <td>{{cases.name}}</td>
                 </tr>
                 
-
-
                 <tr>
                   <td  id="name" class="font-weight-black">Gender:
                   </td>
