@@ -1,7 +1,8 @@
 const state = () => ({
     showLoader: Boolean,
     user: {},  
-   users: []
+    users: [],
+    investigator: []
   });
   
   const mutations = {
@@ -31,6 +32,17 @@ const state = () => ({
     ["CREATE_NEW_USER_SUCCESS"](state, payload) {
       state.showLoader = false;
       state.users.push(payload)
+    },
+
+    /**get investigators */
+      
+    ["USER_"](state) {
+      state.showLoader = true;
+    },
+    
+    ["USER_SUCCESS"](state,response) {
+        state.showLoader = true;
+        state.users = response.data;
     },
 
      //Get self service users
@@ -75,6 +87,7 @@ const state = () => ({
         });
     },
 
+
     async retrieve_user_info({ commit }) {
       commit("USER_INFO");
       await this.$api.$get('api/v1/auth/me')
@@ -86,6 +99,17 @@ const state = () => ({
         });
     },
 
+
+    async retrieve_investigator_staffs({ commit }) {
+      commit("USER");
+      await this.$api.$get('/api/v1/users?role=investigator')
+          .then(response => {
+              console.log(response.data);
+          commit("USER_SUCCESS", response);
+        }).catch(error => {
+          console.log(error);
+        });
+    },
     async create_new_user({ commit }, payload) {
       commit("CREATE_NEW_USER");
       await this.$api.$post(`api/v1/users/`, payload)
