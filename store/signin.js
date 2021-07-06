@@ -1,5 +1,6 @@
 
 const state = () => ({
+  isAuthenticated: Boolean,
   userdata: {},
   error:''
 });
@@ -19,6 +20,7 @@ const mutations = {
   LOGIN_SUCCESS(state, payload) {
     state.showLoader = false;
     state.userdata = payload;
+   
 
   },
   LOGOUT(state) {
@@ -43,9 +45,9 @@ const actions = {
           commit("LOGIN_SUCCESS", response);
           const token = response.token;
           const uuId = response.id;
-          
-          localStorage.setItem('qAccessToken', token);
+           localStorage.setItem('qAccessToken', token);
            localStorage.setItem('uuId', uuId);
+           console,log(localStorage.getItem('uuId') );
 
           this.$router.push('/');
         }
@@ -53,7 +55,7 @@ const actions = {
       }).catch(error => {
         commit("LOGIN_ERROR","Your Username or Password is incorrect");
         localStorage.removeItem('qAccessToken');
-       localStorage.removeItem('uuId', uuId);
+ 
         console.log(error);
 
       });
