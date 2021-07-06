@@ -47,6 +47,7 @@
                           deletable-chips
                           clearable
                           small-chips
+                          :items='navig'
                           multiple
                           :rules="[
                             v => !!v || 'You must select one to continue!'
@@ -93,7 +94,10 @@ export default {
     services: {
       type: Array,
     },
-
+navig: {
+      type: Array,
+      default: null
+    },
     title: {
       type: String,
       default: "Services"

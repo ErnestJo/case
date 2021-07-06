@@ -41,9 +41,9 @@ export default {
       
     };
   },
-// created:{
-//   this.$store.dispatch("retrieve_case",);
-// },
+ created(){
+    this.$store.dispatch("retrieve_accuser");
+  },
   methods: {
     async viewcase() {
       return await this.$api
@@ -66,7 +66,13 @@ export default {
   computed: {
     cases() {
       return this.casedata == null ? "" : this.casedata.data.caseNumber;
-    }
+    },
+  accuser(){
+
+    return this.$store.getters.listaccusers;
+  }
+  
+  
   }
 };
 </script>

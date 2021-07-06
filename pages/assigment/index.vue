@@ -38,6 +38,7 @@
                 <v-tab-item>
                     <servicescard-component
                 :services="unassigned"
+                :navig="navigator"
                 title="Unassigned Cases"
           ></servicescard-component>
               </v-tab-item> 
@@ -45,6 +46,7 @@
               <v-tab-item>
              <servicescard-component
             :services="assigned"
+            :navig="navigator"
             title="Assigned Cases"
           ></servicescard-component>
               </v-tab-item>   
@@ -69,7 +71,9 @@ export default {
     unassigned: [],
   }),
 
-
+ created(){
+    this.$store.dispatch("retrieve_investigator_staffs");
+  },
 methods: {
         async getassigned(){
         return await this.$api.$get(`api/v1/cases?isAssigned=true`)
@@ -98,9 +102,17 @@ methods: {
     },
 },
 
-  //    created(){
-  //   this.$store.dispatch("retrieve_case");
-  // },
+    
+
+computed:{
+
+navigator(){
+return this.$store.getters.investigator;
+}
+
+}
+
+
 }
 </script>
 
