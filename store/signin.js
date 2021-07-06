@@ -43,11 +43,12 @@ const actions = {
         if (response.token != null) {
 
           commit("LOGIN_SUCCESS", response);
+    
           const token = response.token;
           const uuId = response.id;
            localStorage.setItem('qAccessToken', token);
            localStorage.setItem('uuId', uuId);
-           console,log(localStorage.getItem('uuId') );
+         //  console.log(localStorage.getItem('uuId') );
 
           this.$router.push('/');
         }

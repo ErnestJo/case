@@ -119,7 +119,7 @@ const state = () => ({
  // i need the id kae hapo 
     async retrieve_mycases({ commit }) {
       commit("MYCASE");
-      await this.$api.$get('api/v1/cases?assignTo=')
+      await this.$api.$get(`api/v1/cases?assignTo=`+localStorage.getItem('uuId') +`/`)
           .then(response => {
               console.log(response.data);
           commit("MYCASE_SUCCESS", response);
