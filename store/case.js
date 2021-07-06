@@ -3,7 +3,8 @@ const state = () => ({
     cas:{},
     case: [],
     assigned: [],
-    unassigned: [],
+  unassigned: [],
+    mycase: []
   
   });
   
@@ -47,6 +48,18 @@ const state = () => ({
       state.unassigned = response.data;
     },
     
+
+
+    /** Fetch cases assiged  */
+
+    ["MYCASE"](state) {
+      state.showLoader = true;
+    },
+
+    ["MYCASE_SUCCESS"](state, response) {
+      state.showLoader = true;
+      state.mycase = response.data;
+    },
   }
   
   const actions = {
@@ -103,6 +116,18 @@ const state = () => ({
         });
     },
     
+ // i need the id kae hapo 
+    async retrieve_mycases({ commit }) {
+      commit("MYCASE");
+      await this.$api.$get('api/v1/cases?assignTo=')
+          .then(response => {
+              console.log(response.data);
+          commit("MYCASE_SUCCESS", response);
+        }).catch(error => {
+          console.log(error)
+        });
+    },
+    
 
     async retrieve_unassigned({ commit }) {
       commit("CASE");
@@ -119,6 +144,10 @@ const state = () => ({
   const getters = {
     listcases: function (state) {
       return state.case;
+    },
+
+    listmycases: function (state) {
+      return state.mycase;
     },
 
     cas: (state) => (id) => {
