@@ -14,7 +14,7 @@
         :items="services"
         :search="search"
         mobile-breakpoint="100"
-        @click:row="handleClick"
+        @click:row="handle_row_click"
         @update:page="updatePagination"
       >
         
@@ -54,9 +54,14 @@ export default {
     }
   }),
   methods: {
-    handleClick: function(value) {
-      this.$router.push("api/v1/accusers/" + value.id);
-    },
+    // handleClick: function(value) {
+    //   this.$router.push("api/v1/accusers/" + value.id);
+    // },
+
+     handle_row_click(i) {
+       console.log(i._id);
+      this.$router.push("api/v1/accusers/" + i._id);
+  },
     updatePagination: function(val) {
       console.log(val);
     }

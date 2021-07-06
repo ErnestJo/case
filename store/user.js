@@ -2,7 +2,8 @@ const state = () => ({
     showLoader: Boolean,
     user: {},  
     users: [],
-    investigator: []
+    investigator:''
+    
   });
   
   const mutations = {
@@ -14,7 +15,7 @@ const state = () => ({
     
     ["USER_SUCCESS"](state,response) {
         state.showLoader = true;
-        state.users = response.data;
+        state.investigator = response.data;
     },
     
     ["CREATE_NEW_USER"](state) {
@@ -104,7 +105,9 @@ const state = () => ({
       commit("USER");
       await this.$api.$get('/api/v1/users?role=investigator')
           .then(response => {
-              console.log(response.data);
+            console.log("lukelo");  
+            console.log(response.data);
+
           commit("USER_SUCCESS", response);
         }).catch(error => {
           console.log(error);
@@ -155,7 +158,12 @@ const state = () => ({
   const getters = {
     Users: function (state) {
       return state.users;
+      
     },
+    investigator:function(state)
+      {
+        return state.investigator;
+      }
   }
   export default {
     namespaced: false,

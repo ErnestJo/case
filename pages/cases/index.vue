@@ -33,6 +33,7 @@ export default {
     
  created(){
     this.$store.dispatch("retrieve_case");
+   
   },
     computed: {
         formTitle() {
