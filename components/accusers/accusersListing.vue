@@ -137,8 +137,7 @@ export default {
         page: 1,
         sortBy: ["name"]
       }
-    }
-    
+    } 
 }),
 
     computed: {
@@ -161,15 +160,6 @@ export default {
   created() {},
 
  methods: {
-    getBadgee (status) {
-      switch (status) {
-        case 'Active': return 'success'
-        case 'Inactive': return 'secondary'
-        case 'Pending': return 'warning'
-        case 'Banned': return 'danger'
-        default: 'primary'
-      }
-    },
     editItem(item) {
       this.editedIndex = this.datalist.indexOf(item);
       this.editedItem = Object.assign({}, item);
@@ -177,9 +167,10 @@ export default {
       this.editedItemId = item.id;
     },
 
-    handleClick: function(value) {
-    //   this.$router.push("datalist/patients/" + value.id);
+    handleClick: function(item) {
+      this.$router.push("/accusers/" + item.id);
     },
+
     initialize() {},
     updatePagination: function(val) {
       console.log(val);
@@ -187,7 +178,7 @@ export default {
   },
 
   beforeMount() {
-    // this.$store.dispatch("retrievepatients");
+    this.$store.dispatch("retrieve_accuser");
   }
 }
 </script>

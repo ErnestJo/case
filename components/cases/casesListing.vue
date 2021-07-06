@@ -95,7 +95,7 @@ export default {
     editedItemId: "",
     editedItem: {
 
-     name: "",
+      name: "",
       phone: "",
       address: "",
       age: 0,
