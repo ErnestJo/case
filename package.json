@@ -21,7 +21,7 @@
     "sweetalert": "^2.1.2",
     "tanzaniageodata": "^1.0.8",
     "vue-apexcharts": "^1.6.1",
-    "vue-pdf-print": "^1.0.3",
+    "vue-pdf-app": "^2.1.0",
     "vue-toasted": "^1.1.28"
   },
   "devDependencies": {
