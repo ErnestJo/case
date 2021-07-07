@@ -101,6 +101,7 @@ Vue.mixin({
       return this.$vuetify.breakpoint.mdAndUp;
     },
     userinfo() {
+      console.log("leo ndo leo")
       return this.$store.getters.userInfos;
     },
     username() {

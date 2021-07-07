@@ -1,4 +1,3 @@
-
 const state = () => ({
   isAuthenticated: Boolean,
   userdata: {},
@@ -13,16 +12,17 @@ const mutations = {
   LOGIN_FAILED(state) {
     state.showLoader = false;
   },
+
   LOGIN_ERROR(state,error) {
     state.showLoader = false;
     state.error = error;
   },
-  LOGIN_SUCCESS(state, payload) {
-    state.showLoader = false;
-    state.userdata = payload;
-   
 
+  LOGIN_SUCCESS(state, response) {
+    state.showLoader = false;
+    state.userdata = response;
   },
+
   LOGOUT(state) {
     state.showLoader = true;
   },
@@ -46,8 +46,14 @@ const actions = {
     
           const token = response.token;
           const uuId = response.id;
-           localStorage.setItem('qAccessToken', token);
-           localStorage.setItem('uuId', uuId);
+          const mrole = response.role;
+          const mmail = response.email;
+          const mname = response.name;
+          localStorage.setItem('qAccessToken', token);
+          localStorage.setItem('uuId', uuId);
+          localStorage.setItem('mrole', mrole);
+          localStorage.setItem('mmail', mmail);
+          localStorage.setItem('mname', mname);
          //  console.log(localStorage.getItem('uuId') );
 
           this.$router.push('/');
