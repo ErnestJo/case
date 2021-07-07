@@ -81,10 +81,10 @@ export default {
         search: "",
         sortDesc: false,  
          headers: [
-      { text: "Investigation Number", value: "" },
-      { text: "Category Of Offence", value: "" },
-      { text: "Status", value: "phone" },
-      { text: "Report of Case", value: "" },
+      { text: "Investigation Number", value: "categoryOfOffence" },
+      { text: "Category Of Offence", value: "offence" },
+      { text: "Status", value: "section" },
+      { text: "Report of Case", value: "case.caseNumber" },
     ],
     desserts: [],
     editedIndex: -1,
@@ -175,8 +175,8 @@ export default {
       this.editedItemId = item.id;
     },
 
-    handleClick: function(value) {
-    //   this.$router.push("/patients/" + value.id);
+    handleClick: function(i) {
+    this.$router.push("/ireports/" + i._id);
     },
     initialize() {},
     updatePagination: function(val) {
