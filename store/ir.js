@@ -1,6 +1,7 @@
 const state = () => ({
     showLoader: Boolean,
-    ireports: []
+  ireports: [],
+    ireportsdata: null
   });
   
   const mutations = {
@@ -15,6 +16,15 @@ const state = () => ({
         state.ireports = response.data;
       },
 
+      ["IRID"](state) {
+        state.showLoader = true;
+      
+    },
+      
+    ["IRID_SUCCESS"](state,response) {
+      state.showLoader = true;
+      state.ireportsdata = response.data;
+    },
 
     /** Post IR on a cases */
     ["PoSTIR"](state) {
@@ -45,6 +55,17 @@ const state = () => ({
         });
     },
 
+    async retrieve_irbyid({ commit }, payload) {
+      commit("IRID");
+      await this.$api.$get(`api/v1/investigationReports/`+ payload+ `/`)
+          .then(response => {
+            //  console.log(response.data);
+              commit("IRID_SUCCESS", response);
+        }).catch(error => {
+          console.log(error);
+        });
+    },
+
     async postir({ commit }, payload) {
       commit("PoSTIR");
       await this.$api.$post(`api/v1/cases/${payload.id}/investigationReports`, payload.data)
@@ -62,6 +83,11 @@ const state = () => ({
   const getters = {
     listireports: function (state) {
       return state.ireports;
+    },
+
+    irs: function (state) {
+      console.log("ernest");
+      return state.ireportsdata;
     },
  
   }
