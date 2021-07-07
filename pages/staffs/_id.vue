@@ -4,7 +4,11 @@
       <router-link to="/">Dashboard</router-link>
       <router-link to="/staffs"> Staff
       </router-link>
-      <router-link :to="`/staffs/${this.$route.params.id}`" class="active">UserName</router-link>
+      <router-link :to="`/staffs/${this.$route.params.id}`" class="active">{{
+        this.userdetails.name == null
+          ? this.userdetails.name
+          : this.userdetails.name
+      }}</router-link>
     </div>
     <v-container class="ma-0 pa-0" fluid>
         <v-row>
@@ -39,6 +43,12 @@
                       <td>{{ item.value }}</td>
                     </tr>
                     <tr></tr>
+
+                      <!-- <tr>
+                  <td  id="name" class="font-weight-black">Full Name:
+                  </td>
+                  <td>{{userdetails.name}}</td>
+                </tr> -->
                   </tbody>
                 </template>
               </v-simple-table>
@@ -116,47 +126,44 @@
 export default {
 
 
+    created() {
+    this.$store.dispatch("retrieve_userbyid",this.$route.params.id);
+  },
     computed: {
 
-
+      userdetails(){
+      return this.$store.getters.userinfo;
+    },
         desserts: {
         get() {
             return [
             {
                 name: "Name",
+                value: this.userdetails.name
+              
                
             },
             {
                 name: "Role",
-               
+                   value: this.userdetails.role
             },
             {
-                name: "Depatment",
+                name: "Title",
+                    value: this.userdetails.title
                
             },
             {
                 name: "Work Shift",
                 value: "6:00AM - 12:01PM"
             },
-            {
-                name: "Location",
-                
-            },
-
-            {
-                name: "Is Staff",
-               
-            },
-            {
-                name: "Level",
-                
-            },
+         
             {
                 name: "Phone",
                 
             },
             {
                 name: "Email",
+                    value: this.userdetails.email
                
             },
             {
