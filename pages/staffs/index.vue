@@ -38,7 +38,7 @@ export default {
 
    methods: {
     handleClick(item) {
-      this.$router.push("staffs/" + item.id);
+      this.$router.push("staffs/" + item._id);
     }
   },
  created(){
@@ -47,7 +47,6 @@ export default {
 
 
   computed: {
-  
      staff() {
        console.log("");
        console.log(this.$store.getters.Users);
