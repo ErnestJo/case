@@ -21,7 +21,7 @@
                 <tr>
                   <td  id="name" class="font-weight-black">Full Name:
                   </td>
-                  <td></td>
+                  <td>{{accuser.name}}</td>
                 </tr>
                 
                 <tr>
@@ -118,8 +118,14 @@ export default {
       gender: ["Male", "Female", "Unspecified"]
     };
   },
-  beforeCreate() {
-    this.$store.dispatch("retrieve_accusers");
+  created() {
+    this.$store.dispatch("retrieve_accuserbyid",this.$route.params.id);
+  },
+
+  computed:{
+    accuser(){
+      return this.$store.getters.user;
+    }
   },
 methods: {
     // submit() {

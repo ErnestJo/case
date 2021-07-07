@@ -1,6 +1,7 @@
 const state = () => ({
     showLoader: Boolean,
-    accuser: []
+    accuser: [],
+    accuserdata:null
   });
   
   const mutations = {
@@ -14,7 +15,10 @@ const state = () => ({
         state.showLoader = true;
         state.accuser = response.data;
       },
-
+      ["SUCCESS_USER"](state,response) {
+        state.showLoader = true;
+        state.accuserdata = response.data;
+      },
       ["PoST_ACCUSER"](state) {
         state.showLoader = true;
       },
@@ -42,6 +46,17 @@ const state = () => ({
           console.log(error);
         });
     },
+
+    async retrieve_accuserbyid({ commit },payload) {
+    
+      await this.$api.$get(`/api/v1/accusers/`+ payload+ `/`)
+          .then(response => {
+            //  console.log(response.data);
+              commit("SUCCESS_USER", response);
+        }).catch(error => {
+          console.log(error);
+        });
+    },
     
     async createaccuser({ commit }, payload) {
       commit("PoST_ACCUSER");
@@ -63,6 +78,10 @@ const state = () => ({
   const getters = {
     listaccusers: function (state) {
       return state.accuser;
+    },
+    user: function (state) {
+      console.log("lukelo");
+      return state.accuserdata;
     },
  
   }
