@@ -1,6 +1,6 @@
 const state = () => ({
     showLoader: Boolean,
-    user: {},  
+    userdata: null , 
     users: [],
     investigator:''
     
@@ -34,6 +34,16 @@ const state = () => ({
       state.showLoader = false;
       state.users.push(payload)
     },
+
+    ["USERID"](state) {
+      state.showLoader = true;
+    
+  },
+    
+  ["USERID_SUCCESS"](state,response) {
+    state.showLoader = true;
+    state.userdata = response.data;
+  },
 
     /**get investigators */
       
@@ -101,13 +111,23 @@ const state = () => ({
     },
 
 
+    async retrieve_userbyid({ commit }, payload) {
+      commit("USERID");
+      await this.$api.$get(`api/v1/users/`+ payload+ `/`)
+          .then(response => {
+             console.log(response.data);
+              commit("USERID_SUCCESS", response);
+        }).catch(error => {
+          console.log(error);
+        });
+    },
+
     async retrieve_investigator_staffs({ commit }) {
       commit("USER");
       await this.$api.$get('/api/v1/users?role=investigator')
           .then(response => {
-            console.log("lukelo");  
+            console.log("ernest");  
             console.log(response.data);
-
           commit("USER_SUCCESS", response);
         }).catch(error => {
           console.log(error);
@@ -163,7 +183,12 @@ const state = () => ({
     investigator:function(state)
       {
         return state.investigator;
-      }
+    },
+    
+    userinfo: function (state) {
+      console.log("ernest");
+      return state.userdata;
+    },
   }
   export default {
     namespaced: false,
