@@ -21,7 +21,7 @@
                 <tr>
                   <td  id="name" class="font-weight-black">Full Name:
                   </td>
-                  <td>{{accuser.name}}</td>
+                  <td>{{acciruser.name}}</td>
                 </tr>
                 
                 <tr>

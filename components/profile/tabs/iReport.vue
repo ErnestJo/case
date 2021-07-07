@@ -16,8 +16,7 @@
         mobile-breakpoint="100"
         @click:row="handleClick"
         @update:page="updatePagination"
-      >
-        
+      >  
       </v-data-table>
     </div>
   </v-container>
@@ -52,8 +51,8 @@ export default {
     }
   }),
   methods: {
-    handleClick: function(value) {
-      this.$router.push("api/v1/investigationReports/" + value.id);
+    handleClick: function(i) {
+      this.$router.push("/ireports/" + i._id);
     },
     updatePagination: function(val) {
       console.log(val);
