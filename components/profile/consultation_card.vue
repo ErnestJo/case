@@ -41,14 +41,16 @@
                       </v-col>
                       <v-col cols="12" sm="12" md="8">
                         <v-select
-                          
+                          v-model="editedItem.assignTo"
                           chips
                           disable-lookup
                           deletable-chips
                           clearable
                           small-chips
-                          :items='navig'
-                          multiple
+                          return-object
+                           :items="investigator"
+                           item-text="name"
+                          item-value="id"
                           :rules="[
                             v => !!v || 'You must select one to continue!'
                           ]"
@@ -66,7 +68,7 @@
                 <v-btn color="primary" small @click="close">
                  cancel
                 </v-btn>
-                <v-btn color="warning" small @click="save">
+                <v-btn color="warning" small @click="Save">
                   save
                 </v-btn>
               </v-card-actions>
@@ -94,7 +96,7 @@ export default {
     services: {
       type: Array,
     },
-navig: {
+    navig: {
       type: Array,
       default: null
     },
@@ -106,6 +108,9 @@ navig: {
    data: () => ({
     search: null,
      dialog: false,
+     selectedstaffId: null,
+     assignTo:null,
+
     headers: [
       { text: "Case Number", value: "caseNumber", sortable: false },
       { text: "Investigator", value: "assignTo" },
@@ -119,9 +124,9 @@ navig: {
     },
 
     defaultItem: {
-      id: "",
+     id: "",
      isAssigned: false,
-      assignTo: ""
+     assignTo: ""
 
     },
 
@@ -138,10 +143,9 @@ navig: {
    }),
   methods: {
 
-       handleClick: function(item) {
-      this.$router.push("roles/" + item.id);
-    },
-
+    //    handleClick: function(item) {
+    //   this.$router.push("roles/" + item.id);
+    // },
 
         close() {
       this.dialog = false;
@@ -151,35 +155,44 @@ navig: {
       });
       
     },
-     request_data() {
-      // this.$store.dispatch("request_role_privileges");
-      // this.$store.dispatch("fetchuserroles");
-    },
+
+
     editItem(item) {
-      this.editedIndex = this.services.indexOf(item);
+      this.editedIndex = this.investigator.indexOf(item);
       this.editedItem = Object.assign({}, item);
-      // var roles = [];
-      // this.editedItem.roles.forEach(role => {
-      //   roles.push(role.id);
-      // });
-      // this.editedItem.roles = roles;
       this.dialog = true;
     },
 
-        save() {
-      if (this.editedIndex > -1) {
-        console.log(this.editedItem);
-        var did = this.editedItem.id;
-        var payload = { id: did, data: this.editedItem };
+       Save() {
+
+         console.log(this.editedItem.assignTo._id);
+         console.log(this.editedItem.isAssigned)
+      // if (this.editedIndex > -1) {
+      //   console.log(this.editedItem);
+      var did = this.editedItem.id;
+      var payload = { id: did, assignTo:this.editedItem.assignTo._id, isAssigned: this.editedItem.isAssigned };
         this.$store.dispatch("updateassignee", payload);
-      } else {
-       this.close();
-      }
-     
+        this.close();
+      // } else {
+      // //  this.close();
+      // }
     },
     
     updatePagination: function(val) {
       console.log(val);
+    }
+  },
+
+   created(){
+    this.$store.dispatch("retrieve_investigator_staffs");
+  },
+
+  computed: {
+  investigator(){
+    console.log("hello mama")
+    console.log(this.$store.getters.investigator)
+      return this.$store.getters.investigator;
+      
     }
   }
 }

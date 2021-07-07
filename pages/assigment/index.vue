@@ -107,6 +107,8 @@ methods: {
 computed:{
 
 navigator(){
+  console.log("leo");
+  console.log(this.$store.getters.investigator);
 return this.$store.getters.investigator;
 }
 

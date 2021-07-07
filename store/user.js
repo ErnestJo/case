@@ -2,7 +2,7 @@ const state = () => ({
     showLoader: Boolean,
     userdata: null , 
     users: [],
-    investigator:''
+    investigator:null
     
   });
   
@@ -44,6 +44,16 @@ const state = () => ({
     state.showLoader = true;
     state.userdata = response.data;
   },
+
+  ["INVESTIGATOR"](state) {
+    state.showLoader = true;
+  
+},
+  
+["INVESTIGATOR_SUCCESS"](state,response) {
+  state.showLoader = true;
+  state.investigator = response.data;
+},
 
     /**get investigators */
       
@@ -123,12 +133,12 @@ const state = () => ({
     },
 
     async retrieve_investigator_staffs({ commit }) {
-      commit("USER");
+      commit("INVESTIGATOR");
       await this.$api.$get('/api/v1/users?role=investigator')
           .then(response => {
             console.log("ernest");  
             console.log(response.data);
-          commit("USER_SUCCESS", response);
+          commit("INVESTIGATOR_SUCCESS", response);
         }).catch(error => {
           console.log(error);
         });
@@ -181,12 +191,12 @@ const state = () => ({
       
     },
     investigator:function(state)
-      {
-        return state.investigator;
+    {
+      console.log("ernest mamamama");
+       return state.investigator;
     },
     
     userinfo: function (state) {
-      console.log("ernest");
       return state.userdata;
     },
   }

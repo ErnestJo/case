@@ -93,8 +93,13 @@ const state = () => ({
     },
 
     async updateassignee({ commit }, payload) {
+
+      var data = {
+        assignTo: payload.assignTo,
+        isAssigned: payload.isAssigned
+      }
       commit("CASE");
-      await this.$api.$put(`api/v1/cases/${payload.id}/`, payload.data)
+      await this.$api.$put(`api/v1/cases/${payload.id}/`, data)
         .then(response => {
           console.log(response);
           commit("sucess", response);

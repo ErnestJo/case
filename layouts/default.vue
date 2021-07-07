@@ -214,6 +214,24 @@ export default {
           icon: 'mdi-file-replace',
           title: 'Investigation Profile',
           to: '/investigation'
+        },
+
+         {
+          icon: 'mdi-book-cross',
+          title: 'Add Staffs',
+          to: '/staffs/add'
+        },
+
+         {
+          icon: 'mdi-book-cross',
+          title: 'Create Case',
+          to: '/cases/add'
+        },
+
+         {
+          icon: 'mdi-book-cross',
+          title: 'See Assigment Cases',
+          to: '/assigment'
         }
 
 
