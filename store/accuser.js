@@ -48,7 +48,6 @@ const state = () => ({
     },
 
     async retrieve_accuserbyid({ commit },payload) {
-    
       await this.$api.$get(`/api/v1/accusers/`+ payload+ `/`)
           .then(response => {
             //  console.log(response.data);

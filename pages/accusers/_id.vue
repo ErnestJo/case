@@ -27,69 +27,69 @@
                 <tr>
                   <td  id="name" class="font-weight-black">Gender:
                   </td>
-                  <td></td>
+                  <td>{{accuser.gender}}</td>
                 </tr>
 
                 <tr>
                   <td  id="name" class="font-weight-black">Age:
                   </td>
-                  <td></td>
+                  <td>{{accuser.age}}</td>
                 </tr>
 
                 <tr>
                   <td  id="name" class="font-weight-black">Phone No.
                   </td>
-                  <td>  </td>
+                  <td> {{accuser.phone}} </td>
                 </tr>
 
 
                 <tr>
                   <td  id="name" class="font-weight-black">Address.
                   </td>
-                  <td></td>
+                  <td>{{accuser.address}}</td>
                 </tr>
 
                 <tr>
                   <td  id="name" class="font-weight-black">Nationality:
                   </td>
-                  <td></td>
+                  <td>{{accuser.nationalilty}}</td>
                 </tr>
 
 
                  <tr>
                   <td  id="name" class="font-weight-black"> Description:
                   </td>
-                  <td></td>
+                  <td>{{accuser.description}}</td>
                 </tr>
 
                 <tr>
                   <td  id="name" class="font-weight-black">arrested:
                   </td>
-                  <td></td>
+                  <td>arrested</td>
                 </tr>
 
                 <tr>
                   <td  id="name" class="font-weight-black">Police taken Action:
                   </td>
-                  <td></td>
+                  <td>{{accuser.policeOfficerIncharge}}</td>
                 </tr>
 
                  <tr>
                   <td  id="name" class="font-weight-black">next Of kin Name:
                   </td>
-                  <td></td>
+                  <td>{{accuser.nextOfkinName}}</td>
                 </tr>
 
                 <tr>
                   <td  id="name" class="font-weight-black">nextOfkinRelatioinship:
                   </td>
-                  <td></td>
+                  <td>{{accuser.nextOfkinRelatioinship}}</td>
                 </tr>
 
                 <tr>
                   <td  id="name" class="font-weight-black">nextOfkinNumber:
                   </td>
-                  <td></td>
+                  <td>{{accuser.nextOfkinNumber}}</td>
                 </tr>
 
               </tbody>
