@@ -143,6 +143,7 @@ const state = () => ({
           console.log(error);
         });
     },
+
     async create_new_user({ commit }, payload) {
       commit("CREATE_NEW_USER");
       await this.$api.$post(`api/v1/users/`, payload)

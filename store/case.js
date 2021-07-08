@@ -4,7 +4,8 @@ const state = () => ({
     case: [],
     assigned: [],
     unassigned: [],
-    mycase: []
+    mycase: [],
+    repo:"",
   
   });
   
@@ -17,8 +18,12 @@ const state = () => ({
     
     ["CASE_SUCCESS"](state,response) {
         state.showLoader = true;
-        state.case = response.data;
-      },    
+      state.case = response.data;
+    
+      
+    },
+    
+
     ["sucess"](state) {
       state.repo = "sucessed";
   },
@@ -80,7 +85,6 @@ const state = () => ({
   
     async post_case({ commit },payload) {
       commit("CASE");
-
       console.log("sadas");
       await this.$api.$post('api/v1/cases/',payload)
           .then(response => {

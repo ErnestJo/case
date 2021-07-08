@@ -158,7 +158,7 @@ Vue.use(Vuex);
 export default {
   data () {
     return {
-       clipped: false,
+      clipped: false,
       mini: true,
       drawer: true,
       fixed: false,
@@ -166,6 +166,7 @@ export default {
       dark: false,
       sync: false,
       interval: {},
+     
  
       items: [
         {
@@ -233,9 +234,6 @@ export default {
           title: 'See Assigment Cases',
           to: '/assigment'
         }
-
-
-        
       ],
 
       miniVariant: false,
@@ -245,7 +243,25 @@ export default {
     }
   },
 
+  created(){
+    this.getme;
+  },
+
   methods: {
+
+      async getme(){
+        return await this.$api.$get(`'api/v1/auth/me'`)
+         .then(response => {
+          if (response != null) {
+            this.User = response.data;
+            console.log(response)
+          }
+        }).catch(error => {
+          console.log(error);
+        });
+    },
+
+
     selectedItemAction: function(item) {
       switch (item) {
         case 0:
@@ -261,7 +277,7 @@ export default {
     toggledrawer: function() {
       this.drawer = !this.drawer;
     },
-  logoutsession: function() {
+    logoutsession: function() {
       this.$store.dispatch("_clear_local_storage_and_sign_out"); 
     },
     changemode: function() {

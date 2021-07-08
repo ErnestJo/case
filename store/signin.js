@@ -1,7 +1,8 @@
 const state = () => ({
   isAuthenticated: Boolean,
   userdata: {},
-  error:''
+  error: '',
+  activeuserdata: null,
 });
 
 const mutations = {
@@ -21,6 +22,7 @@ const mutations = {
   LOGIN_SUCCESS(state, response) {
     state.showLoader = false;
     state.userdata = response;
+    
   },
 
   LOGOUT(state) {
@@ -32,6 +34,15 @@ const mutations = {
   },
   LOGOUT_FAILED(state) {
     state.showLoader = false;
+  },
+
+
+  ACTIVEUSR(state) {
+    state.showLoader = true;
+  },
+  ACTIVEUSER_SUCCESS(state) {
+    state.showLoader = false;
+    state.activeuserdata = null;
   },
 };
 const actions = {
@@ -66,7 +77,8 @@ const actions = {
         console.log(error);
 
       });
-  }
+  },
+
 };
 const getters = {
   isLoggedIn: function (state) {
@@ -81,6 +93,9 @@ const getters = {
   Signerror: function (state) {
     return state.error;
   },
+  active: function (state){
+   return state.activeuserdata 
+  }
 };
 export default {
   namespaced: false,

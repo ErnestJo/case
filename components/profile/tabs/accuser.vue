@@ -17,7 +17,6 @@
         @click:row="handle_row_click"
         @update:page="updatePagination"
       >
-        
       </v-data-table>
     </div>
   </v-container>
@@ -59,8 +58,8 @@ export default {
     // },
 
      handle_row_click(i) {
-       console.log(i._id);
-      this.$router.push("/accusers/" + i._id);
+       console.log(i.id);
+      this.$router.push("/accusers/" + i.id);
   },
     updatePagination: function(val) {
       console.log(val);

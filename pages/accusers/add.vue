@@ -27,7 +27,7 @@
                                         hint="Complaint Full name E.g Ernest Joseph (Mandatory)">
                                         </v-text-field>
                                     </v-col>  
-                                  
+
                                     <v-col cols="12">
                                         <v-select
                                         v-model="editedItem.gender"
@@ -183,7 +183,7 @@
                  <v-card-actions>
                 <v-spacer></v-spacer>
                 <v-btn @click="close" class="button cancel">Cancel</v-btn>
-                <v-btn color="button" @click="save">Add Case</v-btn>
+                <v-btn color="button" @click="save">Add Accuser</v-btn>
             </v-card-actions>
             </v-container>
             </v-form>
@@ -194,7 +194,6 @@
 <script>
 export default {
     data: () => ({
-
     occupationoptions: [
       "Mfugaji", 
       "student", 
@@ -205,7 +204,6 @@ export default {
     "Tanzanian", 
     "Kenyani", 
     ],
-
     genderoptions: ["Male","Female", "Unspecified"],
     title: "Create New Patient",
     formHasErrors: false,
@@ -225,7 +223,6 @@ export default {
       nextOfkinName: "",
       nextOfkinRelatioinship: "",
       nextOfkinNumber: "",
-
     },
     defaultItem: {
       name: "",
@@ -241,7 +238,6 @@ export default {
       nextOfkinName: "",
       nextOfkinRelatioinship: "",
       nextOfkinNumber: "",
-
       
     },
     rules: {
@@ -254,23 +250,22 @@ export default {
     },
     
   }),
-
    methods: {
     close() {},
     save() {
       console.log(this.editedItem);
       var state = this.$refs.form.validate();
       this.$refs.form.validate();
+      var did = this.$route.params.id;
+      var payload = {id: did, data: this.editedItem}
       if (state) {
         console.log(this.editedItem)
-        this.$store.dispatch("post_case", this.editedItem);
+        this.$store.dispatch("createaccuser", payload);
       }
     }
   }
-
 }
 </script>
 
 <style>
-
 </style>

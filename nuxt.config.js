@@ -76,7 +76,15 @@ export default {
     modules: [
       '@nuxtjs/axios',
       'nuxt-material-design-icons',
-    ],
+  ],
+    
+  toast: {
+    position: 'bottom-right',
+    duration: 4000,
+    theme: 'bubble',
+    singleton: true,
+    iconPack: 'mdi'
+  },
   
     axios: {},
   

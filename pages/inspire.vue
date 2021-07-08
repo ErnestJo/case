@@ -119,7 +119,8 @@ export default {
     };
   },
   beforeCreate() {
-    this.$store.dispatch("retrieve_accusers");
+    console.log("mimi")
+    this.$store.dispatch("activeuser");
   },
 methods: {
     // submit() {

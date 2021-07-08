@@ -1,7 +1,7 @@
 const state = () => ({
     showLoader: Boolean,
     accuser: [],
-    accuserdata:null
+    // accuserdata:null
   });
   
   const mutations = {
@@ -47,15 +47,15 @@ const state = () => ({
         });
     },
 
-    async retrieve_accuserbyid({ commit },payload) {
-      await this.$api.$get(`/api/v1/accusers/`+ payload+ `/`)
-          .then(response => {
-            //  console.log(response.data);
-              commit("SUCCESS_USER", response);
-        }).catch(error => {
-          console.log(error);
-        });
-    },
+    // async retrieve_accuserbyid({ commit },payload) {
+    //   await this.$api.$get(`/api/v1/accusers/`+ payload+ `/`)
+    //       .then(response => {
+    //         //  console.log(response.data);
+    //           commit("SUCCESS_USER", response);
+    //     }).catch(error => {
+    //       console.log(error);
+    //     });
+    // },
     
     async createaccuser({ commit }, payload) {
       commit("PoST_ACCUSER");

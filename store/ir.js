@@ -1,7 +1,7 @@
 const state = () => ({
     showLoader: Boolean,
   ireports: [],
-    ireportsdata: null
+    // ireportsdata: null
   });
   
   const mutations = {
@@ -13,12 +13,11 @@ const state = () => ({
     
     ["INVESTIGATIONREPORT_SUCCESS"](state,response) {
         state.showLoader = true;
-        state.ireports = response.data;
+      state.ireports = response.data;
       },
 
       ["IRID"](state) {
         state.showLoader = true;
-      
     },
       
     ["IRID_SUCCESS"](state,response) {
@@ -55,16 +54,16 @@ const state = () => ({
         });
     },
 
-    async retrieve_irbyid({ commit }, payload) {
-      commit("IRID");
-      await this.$api.$get(`api/v1/investigationReports/`+ payload+ `/`)
-          .then(response => {
-            //  console.log(response.data);
-              commit("IRID_SUCCESS", response);
-        }).catch(error => {
-          console.log(error);
-        });
-    },
+    // async retrieve_irbyid({ commit }, payload) {
+    //   commit("IRID");
+    //   await this.$api.$get(`api/v1/investigationReports/`+ payload+ `/`)
+    //       .then(response => {
+    //         //  console.log(response.data);
+    //           commit("IRID_SUCCESS", response);
+    //     }).catch(error => {
+    //       console.log(error);
+    //     });
+    // },
 
     async postir({ commit }, payload) {
       commit("PoSTIR");

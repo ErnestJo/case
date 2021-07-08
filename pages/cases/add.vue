@@ -92,7 +92,31 @@
                                         v-model="editedItem.immeadiateAction"
                                           :hint="` ${editedItem.immeadiateAction}`"
                                           :items="immeadiateactioinoptions"
-                                            label="Select"
+                                            label="Select action taken"
+                                             outlined
+                                             item-value="value"  
+                                        >
+                                        </v-select>
+                                    </v-col> 
+
+                                     <v-col cols="12">
+                                        <v-select
+                                        v-model="editedItem.finalDisposal"
+                                          :hint="` ${editedItem.policeOfficerTakingIntialAction}`"
+                                          :items="finalDisposaloptions"
+                                            label="Select final disposal"
+                                             outlined
+                                             item-value="value"  
+                                        >
+                                        </v-select>
+                                    </v-col> 
+
+                                     <v-col cols="12">
+                                        <v-select
+                                        v-model="editedItem.policeOfficerTakingIntialAction"
+                                          :hint="` ${editedItem.policeOfficerTakingIntialAction}`"
+                                          :items="policeOfficerTakingIntialActionoptions"
+                                            label="Select action taken"
                                              outlined
                                              item-value="value"  
                                         >
@@ -143,6 +167,25 @@ export default {
      "Arresting Warrant", 
     "No action taken"
     ],
+
+    policeOfficerTakingIntialActionoptions: [
+     "Ally Swaleh", 
+     "Kelvin John", 
+     "Rakim Ormar", 
+     "Chaha James", 
+     "Deo Mau", 
+     "Richard Miles", 
+     "Fine James", 
+     "Leo Kwetu", 
+    ],
+
+    finalDisposaloptions: [
+    "Went To hospital", 
+    "Arresting Accuser",
+    "Accuser reporting day note", 
+    "No action taken"
+    ],
+
     genderoptions: ["Male","Female", "Unspecified"],
     title: "Create New Patient",
     formHasErrors: false,
@@ -203,7 +246,7 @@ export default {
   }),
 
    methods: {
-    close() {},
+    reset() {},
     save() {
  
       console.log(this.editedItem);
